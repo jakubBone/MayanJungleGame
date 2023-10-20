@@ -1,6 +1,18 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Game {
+Scanner scanner = new Scanner(System.in);
+    boolean gameOver;
+    void gamePlay() {
+        while (!gameOver) {
+            chooseMovement();
+            itemList();
+            gameOver = true;
+        }
+    }
+
     public static ArrayList<String> bag = new ArrayList<>();
     static{
         bag.add("knife");
@@ -8,6 +20,30 @@ public class Game {
         bag.add("bottle");
         bag.add("lighter");
         bag.add("dictionary");
+    }
+
+    void chooseMovement(){
+        int movement = 0;
+        System.out.println("0 - Open bag"); // itemList()
+        System.out.println("1 - Put item");
+        System.out.println("2 - Prepare item");
+        System.out.println("3-  End game"); // => game over = true
+        System.out.println("Choose movement: ");
+        scanner.nextInt();
+        switch(movement){
+            case 0:
+                itemList();
+                break;
+            case 1:
+                addItem();
+                break;
+            case 2:
+                prepareToxicArrow();
+                break;
+            case 3:
+                gameOver = true;
+                break;
+        }
     }
 
     public void itemList(){
@@ -19,7 +55,18 @@ public class Game {
         System.out.println();
     }
 
-    public void addItem(String item){
-        bag.add(item);
+    public void addItem(String ... item){
+        bag.add(Arrays.toString(item));
+        System.out.println("the " + item + " hidden into the bag");
+    }
+
+    public void prepareToxicArrow(){
+        if (bag.contains("poison") && bag.contains("wood sticks")) {
+            String arrow = "toxic arrow";
+            addItem(arrow);
+            System.out.println();
+        } else {
+            System.out.println("nie jest w liście."); // make Exceptions
+        }
     }
 }

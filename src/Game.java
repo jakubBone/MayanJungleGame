@@ -6,6 +6,15 @@ public class Game {
 Scanner scanner = new Scanner(System.in);
 
     boolean gameOver;
+    public static ArrayList<String> bag = new ArrayList<>();
+    static{
+        bag.add("knife");
+        bag.add("tequila");
+        bag.add("bottle");
+        bag.add("lighter");
+        bag.add("dictionary");
+    }
+
     void gamePlay() {
         startGame();
         while (!gameOver) {
@@ -19,11 +28,12 @@ Scanner scanner = new Scanner(System.in);
         String name;
         while(true) {
             try {
-                System.out.println("Welcome in game. Please, enter your name");
+                System.out.print("Welcome in game. Please, enter your name: ");
                 name = scanner.nextLine();
+                System.out.println();
                 if (!name.matches("^[a-zA-Z]+$"))
-                    throw new IllegalArgumentException("The name can't contain numbers or special signs")
-            System.out.println("Hello" + name);
+                    throw new IllegalArgumentException("The name can't contain numbers or special signs");
+            System.out.println("Hello " + name);
             break;
             } catch(IllegalArgumentException ex){
                 System.out.println("Error: " + ex.getMessage());
@@ -31,34 +41,36 @@ Scanner scanner = new Scanner(System.in);
         }
     }
 
-    public static ArrayList<String> bag = new ArrayList<>();
-    static{
-        bag.add("knife");
-        bag.add("tequila");
-        bag.add("bottle");
-        bag.add("lighter");
-        bag.add("dictionary");
-    }
+
 
     void chooseMovement(){
-        int movement = 0;
-        System.out.println("0 - Open bag"); // itemList()
-        System.out.println("1 - Put item");
-        System.out.println("2 - Prepare item");
-        System.out.println("3-  End game"); // => game over = true
-        System.out.println("Choose movement: ");
-        scanner.nextInt();
+        String movement;
+        while(true) {
+            try {
+                System.out.println("Select an action");
+                System.out.println("0 - Open the bag"); // itemList()
+                System.out.println("1 - Put the item");
+                System.out.println("2 - Prepare an item");
+                System.out.println("3 - End the game"); // => game over = true
+                movement = scanner.nextLine();
+                if (!movement.matches("[0-3]"))
+                    throw new IllegalArgumentException("Invalid input. Please select a valid option (0, 1, 2, or 3) ");
+                break;
+            } catch(IllegalArgumentException ex){
+                    System.out.println("Error: " + ex.getMessage());
+            }
+        }
         switch(movement){
-            case 0:
+            case "0":
                 itemList();
                 break;
-            case 1:
+            case "1":
                 addItem();
                 break;
-            case 2:
+            case "2":
                 prepareToxicArrow();
                 break;
-            case 3:
+            case "3":
                 gameOver = true;
                 break;
         }

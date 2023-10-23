@@ -1,2 +1,3 @@
-public class Jungle extends Area{
+public class Jungle {
+
 }

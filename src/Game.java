@@ -3,15 +3,21 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
-    boolean gameOver;
+
+    static String answer = "";
+    Item item = new Item();
 
     void gamePlay() {
         startGame();
-        while (!gameOver) {
-            gameOver = true;
+        History.welcomeText();
+        History.firstBagCheck();
+        item.itemList();
+        while (true) {
+            // all game
+            break;
         }
+        quitGame();
     }
-
     void startGame() {
         String name;
         while(true) {
@@ -29,7 +35,9 @@ public class Game {
         }
     }
 
-
+    void quitGame(){
+        System.out.println("Thank you for the game. See you again!");
+    }
 
 
 

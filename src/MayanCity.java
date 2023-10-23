@@ -1,2 +1,2 @@
-public class MayanCity extends Area{
+public class MayanCity{
 }

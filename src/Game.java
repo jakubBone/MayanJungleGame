@@ -9,9 +9,7 @@ public class Game {
 
     void gamePlay() {
         startGame();
-        History.welcomeText();
-        History.firstBagCheck();
-        item.itemList();
+
         while (true) {
             // all game
             break;

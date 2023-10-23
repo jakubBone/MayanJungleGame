@@ -15,17 +15,24 @@ public class Item {
         bag.add("dictionary");
     }
 
+    void openTheBag(){
+        itemList();
+    }
+
+
+
     void selectItemAction(){
         String movement;
         while(true) {
             try {
                 System.out.println("Select an action");
-                System.out.println("0 - Open the bag"); // itemList()
-                System.out.println("1 - Put the item");
-                System.out.println("2 - Prepare an item");
-                System.out.println("3 - End the game"); // => game over = true
+                System.out.println("0 - Go straight");
+                System.out.println("1 - Open the bag");
+                System.out.println("2 - Pick up the item");
+                System.out.println("3 - Prepare an item");
+                System.out.println("4 - Quit the game"); // => game over = true
                 movement = scanner.nextLine();
-                if (!movement.matches("[0-3]"))
+                if (!movement.matches("[0-4]"))
                     throw new IllegalArgumentException("Invalid input. Please select a valid option (0, 1, 2, or 3) ");
                 break;
             } catch(IllegalArgumentException ex){
@@ -34,7 +41,7 @@ public class Item {
         }
         switch(movement){
             case "0":
-                itemList();
+                // go straight
                 break;
             case "1":
                 addItem();
@@ -43,11 +50,13 @@ public class Item {
                 prepareToxicArrow();
                 break;
             case "3":
+                 // the end
+            case "3":
                 break; // the end
         }
     }
     public void itemList(){
-        System.out.println("Use item: ");
+        System.out.println("Choose item: ");
         int i = 0;
         for(String element: bag){
             System.out.println(i + " - " + element);

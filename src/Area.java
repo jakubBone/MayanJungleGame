@@ -1,12 +1,16 @@
 public abstract class Area {
 
-    void areaDescribe(){
+    void placeDescribingScene(){
 
     }
-    void giveHint1(){
-    }
-    void giveHint2(){
 
+    void goNorth(){
+    }
+    void goSouth(){
+    }
+    void goEast(){
+    }
+    void goWest(){
     }
 
 }

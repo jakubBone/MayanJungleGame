@@ -17,40 +17,7 @@ public class Item {
         itemList();
     }
 
-    void selectItemAction(){
-        String action;
-        while(true) {
-            System.out.println("0 - Go straight");
-            System.out.println("1 - Open the bag");
-            System.out.println("2 - Pick up the item");
-            System.out.println("3 - Prepare an item");
-            System.out.println("4 - Quit the game"); // => game over = true
-            System.out.print("Select an action: ");
-            System.out.println();
-                action = scanner.nextLine();
-            if(action.matches("[0-4]")) {
-            switch (action) {
-                case "0":
-                    // go straight
-                    break;
-                case "1":
-                    openTheBag();
-                    break;
-                case "2":
-                    addItem();
-                    break;
-                case "3":
-                    prepareToxicArrow();
-                case "4":
-                    break; // the end
-            }
-            break;
-        }
-            else
-                System.out.println("Invalid action. Please try again. ");
-        }
-    }
-    public void itemList(){
+    public static void itemList(){
         System.out.println("Choose item: ");
         int i = 0;
         for(String element: bag){

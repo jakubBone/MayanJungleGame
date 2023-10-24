@@ -5,13 +5,10 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
     History history = new History();
 
-    static String answer = "";
     Item item = new Item();
 
     void gamePlay() {
         startGame();
-        history.wakeUpScene();
-        history.firstBagCheckingScene();
         quitGame();
     }
     void startGame() {

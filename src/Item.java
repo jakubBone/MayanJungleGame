@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class Item {
     Scanner scanner = new Scanner(System.in);
-
     public static ArrayList<String> bag = new ArrayList<>();
-
     static{
         bag.add("knife");
         bag.add("tequila");
@@ -19,40 +17,37 @@ public class Item {
         itemList();
     }
 
-
-
     void selectItemAction(){
-        String movement;
+        String action;
         while(true) {
-            try {
-                System.out.println("Select an action");
-                System.out.println("0 - Go straight");
-                System.out.println("1 - Open the bag");
-                System.out.println("2 - Pick up the item");
-                System.out.println("3 - Prepare an item");
-                System.out.println("4 - Quit the game"); // => game over = true
-                movement = scanner.nextLine();
-                if (!movement.matches("[0-4]"))
-                    throw new IllegalArgumentException("Invalid input. Please select a valid option (0, 1, 2, or 3) ");
-                break;
-            } catch(IllegalArgumentException ex){
-                System.out.println("Error: " + ex.getMessage());
+            System.out.println("0 - Go straight");
+            System.out.println("1 - Open the bag");
+            System.out.println("2 - Pick up the item");
+            System.out.println("3 - Prepare an item");
+            System.out.println("4 - Quit the game"); // => game over = true
+            System.out.print("Select an action: ");
+            System.out.println();
+                action = scanner.nextLine();
+            if(action.matches("[0-4]")) {
+            switch (action) {
+                case "0":
+                    // go straight
+                    break;
+                case "1":
+                    openTheBag();
+                    break;
+                case "2":
+                    addItem();
+                    break;
+                case "3":
+                    prepareToxicArrow();
+                case "4":
+                    break; // the end
             }
+            break;
         }
-        switch(movement){
-            case "0":
-                // go straight
-                break;
-            case "1":
-                addItem();
-                break;
-            case "2":
-                prepareToxicArrow();
-                break;
-            case "3":
-                 // the end
-            case "3":
-                break; // the end
+            else
+                System.out.println("Invalid action. Please try again. ");
         }
     }
     public void itemList(){

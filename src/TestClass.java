@@ -1,6 +1,6 @@
 public class TestClass {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.gamePlay();
+        Item item = new Item();
+        item.selectItemAction();
     }
 }

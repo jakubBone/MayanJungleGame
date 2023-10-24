@@ -3,17 +3,15 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
+    History history = new History();
 
     static String answer = "";
     Item item = new Item();
 
     void gamePlay() {
         startGame();
-
-        while (true) {
-            // all game
-            break;
-        }
+        history.wakeUpScene();
+        history.firstBagCheckingScene();
         quitGame();
     }
     void startGame() {

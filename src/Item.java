@@ -32,10 +32,10 @@ public class Item {
         System.out.println("the " + item + " hidden into the bag");
     }
 
-    public void prepareToxicArrow(){
+    public void prepareToxicSpear(){
         if (bag.contains("poison") && bag.contains("wood sticks")) {
-            String arrow = "toxic arrow";
-            addItem(arrow);
+            String spear = "toxic spear;
+            addItem(spear);
             System.out.println();
         } else {
             System.out.println("You need both posion and wood sticks prepare toxic arrows ");

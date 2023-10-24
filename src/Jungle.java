@@ -25,7 +25,7 @@ public class Jungle extends Area{
         System.out.println("1 - Open the bag");
             // drink, prepare the item etc.
         System.out.println("2 - Get a Hint");
-            // get first hint (choose direction)
+            // get first hint (Find some things that may be useful in defense of life, remebmer your are in jungle )
         System.out.println("4 - Quit the game"); // => game over = true
     }
 
@@ -47,24 +47,33 @@ public class Jungle extends Area{
     }
     @Override
     void goSouth() {
-        System.out.println("The jungle is too thick. there is no way you can get through");
+        System.out.println("There is a flower with intense colors and iridescent petals that captures your attention");
+        System.out.println("Also you see ");
         System.out.println("Go back?");
     }
     @Override
     void goEast() {
         System.out.println("Find the Indian Village");
-        // Lighter exchanging - map
-        // Indian only want the lighter
+        String hint = "You need a map. Ask the Indian Chief for it. Use the dictionary. "
+        // use the dictionary
+        // oper the bag - use the knife
+        // Indian chief only want the lighter, you get the map
         // Go to the West
     }
 
     @Override
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        // drink
+        String hint = "Fill the bottle and drink"
+                // if no , health - 30
 
     void goWestAgain(){
             System.out.println("Oh shit! The jaguar! I don't want to die!");
+            String hint = "Use the weapon!"
+            // use knife -> jaguar bit you - 80 health
+            // still fight with toxic -> jaguar die
+            // disinfect the bite after a fight + 30
+            // preapre the jaguar meat and eat -> the health + 50
 
     }
 

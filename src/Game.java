@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
-    History history = new History();
 
     Item item = new Item();
 

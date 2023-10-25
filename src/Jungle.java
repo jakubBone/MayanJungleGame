@@ -103,9 +103,17 @@ public class Jungle extends Area {
 
     @Override
     void goNorth() {
-        System.out.println("Suddlnly, I saw a huge whole filled with clear cristal water");
-        System.out.println("It is Centote! - you shout ");
-
+        System.out.println("You find a huge tree with strange sign on it. " +
+                "As if someone made it using knife on purpose");
+        System.out.println();
+        System.out.println(" #######");
+        System.out.println("#      ###########");
+        System.out.println("        #       #");
+        System.out.println("         #######");
+        System.out.println();
+        System.out.println("- That is this is the Big Dipper constellation! - you think");
+        System.out.println("- Mayan had a great astronomic knowledge. Maybe it would be useful in the future");
+        System.out.println("You come back to the crossroad");
     }
 
     @Override
@@ -128,8 +136,8 @@ public class Jungle extends Area {
     @Override
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        String hint = "Fill the bottle and drink"
-        // if no , health - 30
+        String hint = "Fill the bottle and drink";
+        goWestAgain();
     }
 
     void goWestAgain() {

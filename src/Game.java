@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
+    static String playerName;
+    static int playerHealth;
 
     Item item = new Item();
 

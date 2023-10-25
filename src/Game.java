@@ -6,29 +6,15 @@ public class Game {
     static String playerName;
     static int playerHealth;
 
-    Item item = new Item();
-
     void gamePlay() {
-        startGame();
-        quitGame();
-    }
-    void startGame() {
-        String name;
-        while(true) {
-            try {
-                System.out.print("Welcome in game. Please, enter your name: ");
-                name = scanner.nextLine();
-                System.out.println();
-                if (!name.matches("^[a-zA-Z]+$"))
-                    throw new IllegalArgumentException("The name can't contain numbers or special signs");
-            System.out.println("Hello " + name);
-            break;
-            } catch(IllegalArgumentException ex){
-                System.out.println("Error: " + ex.getMessage());
-            }
-        }
-    }
+        System.out.print("Welcome in game. Please, enter your name: ");
+        playerName = scanner.nextLine();
+        System.out.println();
+        System.out.println("Hello " + playerName + "Let's begin the game!");
 
+        quitGame();
+
+    }
     void quitGame(){
         System.out.println("Thank you for the game. See you again!");
     }

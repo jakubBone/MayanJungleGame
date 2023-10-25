@@ -34,7 +34,7 @@ public class Item {
 
     public void prepareToxicSpear(){
         if (bag.contains("poison") && bag.contains("wood sticks")) {
-            String spear = "toxic spear;
+            String spear = "toxic spear";
             addItem(spear);
             System.out.println();
         } else {

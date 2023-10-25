@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class Jungle extends Area {
+
+    static boolean ifNorthNotExplored = true;
+    static boolean ifSouthNotExplored = true;
+    static boolean ifEastNotExplored = true;
+    static boolean ifWestNotExplored = true;
     Scanner scanner = new Scanner(System.in);
     @Override
     void placeDescribingScene() {
@@ -39,7 +44,7 @@ public class Jungle extends Area {
         System.out.println("2 - Get a Hint");
         // get first hint (Find some things that may be useful in defense of life, remebmer your are in jungle )
         System.out.println("3 - Quit the game"); // => game over = true
-        choice = scanner.nextInt()
+        choice = scanner.nextInt();
             if(choice >= 0 && choice <=4){
                 switch(choice){
                     case 0:
@@ -67,19 +72,38 @@ public class Jungle extends Area {
             System.out.println("S - Go south");
             System.out.println("E - Go east");
             System.out.println("W - Go west");
+            scanner.nextLine();
             direction = scanner.nextLine().toUpperCase();
             if("NSEW".contains(direction)){
                 switch(direction){
                     case "N":
-                        goNorth();
-                        break;
+                        if(ifNorthNotExplored) {
+                            goNorth();
+                            ifNorthNotExplored = false;
+                            break;
+                        } else
+                            System.out.println("You have been there. Change direction");
                     case "S":
-                        goSouth();
-                        break;
+                        if(ifSouthNotExplored) {
+                            goSouth();
+                            ifSouthNotExplored = false;
+                            break;
+                        } else
+                            System.out.println("You have been there. Change direction");
                     case "E":
-                        goEast();
-                        break;
+                        if(ifEastNotExplored) {
+                            goEast();
+                            ifEastNotExplored = false;
+                            break;
+                        } else
+                            System.out.println("You have been there. Change direction");
                     case "W":
+                        if(ifWestNotExplored) {
+                            goWest();
+                            ifWestNotExplored = false;
+                            break;
+                        } else
+                            System.out.println("You have been there. Change direction");
                         goWest();
                         break;
                 }
@@ -88,17 +112,6 @@ public class Jungle extends Area {
                 System.out.println("Invalid choise buddy. Please again");
             }
         }
-    }
-
-    public void getSecondUserChoice() {
-        System.out.println("What you want to do?");
-        System.out.println("0 - Go back");
-        System.out.println("1 - Open the bag");
-        // drink, prepare the item etc.
-        System.out.println("2 - Get a Hint");
-        // get second hint (go back, choose a direction and find a useful sign in jungle)
-        // if sign will be find, user will go east to get the map from the indians
-        System.out.println("4 - Quit the game"); // => game over = true
     }
 
     @Override
@@ -126,7 +139,7 @@ public class Jungle extends Area {
     @Override
     void goEast() {
         System.out.println("Find the Indian Village");
-        String hint = "You need a map. Ask the Indian Chief for it. Use the dictionary. "
+        String hint = "You need a map. Ask the Indian Chief for it. Use the dictionary";
         // use the dictionary
         // oper the bag - use the knife
         // Indian chief only want the lighter, you get the map
@@ -142,7 +155,7 @@ public class Jungle extends Area {
 
     void goWestAgain() {
         System.out.println("Oh shit! The jaguar! I don't want to die!");
-        String hint = "Use the weapon!"
+        String hint = "Use the weapon!";
         // use knife -> jaguar bit you - 80 health
         // still fight with toxic -> jaguar die
         // disinfect the bite after a fight + 30

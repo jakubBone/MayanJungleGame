@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Jungle extends Area {
 
-    static boolean ifNorthNotExplored = true;
-    static boolean ifSouthNotExplored = true;
-    static boolean ifEastNotExplored = true;
-    static boolean ifWestNotExplored = true;
+    static boolean ifNorthExplored = false;
+    static boolean ifSouthExplored = false;
+    static boolean ifEastExplored = false;
+    static boolean ifWestExplored = false;
     Scanner scanner = new Scanner(System.in);
     @Override
     void placeDescribingScene() {
@@ -59,7 +59,6 @@ public class Jungle extends Area {
                         Game.quitGame();
                         break;
                 }
-                break;
             } else
                 System.out.println("Invalid choice buddy. Please again");
         }
@@ -72,47 +71,19 @@ public class Jungle extends Area {
             System.out.println("S - Go south");
             System.out.println("E - Go east");
             System.out.println("W - Go west");
-            scanner.nextLine();
-            direction = scanner.nextLine().toUpperCase();
-            if("NSEW".contains(direction)){
-                switch(direction){
-                    case "N":
-                        if(ifNorthNotExplored) {
-                            goNorth();
-                            ifNorthNotExplored = false;
-                            break;
-                        } else
-                            System.out.println("You have been there. Change direction");
-                    case "S":
-                        if(ifSouthNotExplored) {
-                            goSouth();
-                            ifSouthNotExplored = false;
-                            break;
-                        } else
-                            System.out.println("You have been there. Change direction");
-                    case "E":
-                        if(ifEastNotExplored) {
-                            goEast();
-                            ifEastNotExplored = false;
-                            break;
-                        } else
-                            System.out.println("You have been there. Change direction");
-                    case "W":
-                        if(ifWestNotExplored) {
-                            goWest();
-                            ifWestNotExplored = false;
-                            break;
-                        } else
-                            System.out.println("You have been there. Change direction");
-                        goWest();
-                        break;
-                }
-                break;
-            } else{
-                System.out.println("Invalid choise buddy. Please again");
+            direction = scanner.nextLine();
+            if (direction.equals("N") && !ifNorthExplored)
+                goNorth();
+            else if (direction.equals("S") && !ifSouthExplored)
+                goSouth();
+            else if (direction.equals("E") && !ifEastExplored)
+                goEast();
+            else if (direction.equals("W") && !ifWestExplored)
+                goWest();
+            else
+                System.out.println("Invalid choice or you have been here before. Please try again of change direction.");
             }
         }
-    }
 
     @Override
     void goNorth() {
@@ -127,6 +98,7 @@ public class Jungle extends Area {
         System.out.println("- That is this is the Big Dipper constellation! - you think");
         System.out.println("- Mayan had a great astronomic knowledge. Maybe it would be useful in the future");
         System.out.println("You come back to the crossroad");
+        ifNorthExplored = true;
     }
 
     @Override

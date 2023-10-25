@@ -1,9 +1,6 @@
 public abstract class Area {
-
     void placeDescribingScene(){
-
     }
-
     void goNorth(){
     }
     void goSouth(){

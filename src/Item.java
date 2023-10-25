@@ -13,7 +13,7 @@ public class Item {
         bag.add("dictionary");
     }
 
-    void openTheBag(){
+    public static void openTheBag(){
         itemList();
     }
 

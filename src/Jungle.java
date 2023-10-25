@@ -29,8 +29,8 @@ public class Jungle extends Area {
                 ", so you need to eat and drink || ");
     }
 
-    public void getCrossroadChoise() {
-        int choise;
+    public void getCrossroadChoice() {
+        int choice;
         while(true) {
         System.out.println("What you want to do?");
         System.out.println("0 - Choose direction");
@@ -39,15 +39,15 @@ public class Jungle extends Area {
         System.out.println("2 - Get a Hint");
         // get first hint (Find some things that may be useful in defense of life, remebmer your are in jungle )
         System.out.println("3 - Quit the game"); // => game over = true
-        choise = scanner.nextInt()
-            if(choise >= 0 && choise <=4){
-                switch(choise){
+        choice = scanner.nextInt()
+            if(choice >= 0 && choice <=4){
+                switch(choice){
                     case 0:
-                        getDirectionChoise();
+                        getDirectionChoice();
                         break;
                     case 1:
                         Item.openTheBag();
-                        break;
+                        System.out.println("You don't need to use the items right now");
                     case 2:
                         System.out.println("You need to choose direction");
                     case 3:
@@ -55,13 +55,12 @@ public class Jungle extends Area {
                         break;
                 }
                 break;
-            } else{
-                System.out.println("Invalid choise buddy. Please again");
-            }
+            } else
+                System.out.println("Invalid choice buddy. Please again");
         }
     }
 
-    public void getDirectionChoise() {
+    public void getDirectionChoice() {
         String direction;
         while(true) {
             System.out.println("N - Go north");
@@ -72,7 +71,7 @@ public class Jungle extends Area {
             if("NSEW".contains(direction)){
                 switch(direction){
                     case "N":
-                        goEast();
+                        goNorth();
                         break;
                     case "S":
                         goSouth();
@@ -91,7 +90,7 @@ public class Jungle extends Area {
         }
     }
 
-    public void getSecondUserChoise() {
+    public void getSecondUserChoice() {
         System.out.println("What you want to do?");
         System.out.println("0 - Go back");
         System.out.println("1 - Open the bag");

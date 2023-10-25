@@ -16,6 +16,7 @@ public class Game {
 
         jungle.placeDescribingScene();
         jungle.firstBagCheckingScene();
+        jungle.getCrossroadChoice();
         quitGame();
     }
     public static void quitGame(){

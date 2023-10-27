@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class Jungle extends Area {
 
-    static boolean ifNorthExplored = false;
-    static boolean ifSouthExplored = false;
-    static boolean ifEastExplored = false;
-    static boolean ifWestExplored = false;
+    boolean ifNorthExplored = false;
+    boolean ifSouthExplored = false;
+    boolean ifEastExplored = false;
+    boolean ifWestExplored = false;
+    boolean ifFirstHintUsed = false;
     Scanner scanner = new Scanner(System.in);
+
+
+
     @Override
-    void placeDescribingScene() {
+    public void placeDescribingScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
                 "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
                 "The first thing you feel is heat and humidity. There are a lot of tropical trees and birdsong like " +
@@ -30,12 +34,10 @@ public class Jungle extends Area {
         System.out.println();
         System.out.println("-Let's try to quit this place!");
         System.out.println();
-        System.out.println("|| Your healh level is " + Game.playerHealth +
-                ", so you need to eat and drink || ");
+        System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
+        System.out.println("Find something to eat and drink to get stronger");
     }
-
-
-
+    @Override
     public void getDirection() {
         String direction;
         while(true) {
@@ -68,7 +70,7 @@ public class Jungle extends Area {
         System.out.println("         #######");
         System.out.println();
         System.out.println("- That is this is the Big Dipper constellation! - you think");
-        System.out.println("- Mayan had a great astronomic knowledge. Maybe it would be useful in the future");
+        System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future");
         System.out.println("You come back to the crossroad");
         ifNorthExplored = true;
     }
@@ -76,24 +78,34 @@ public class Jungle extends Area {
 
     void goSouth() {
         System.out.println("There is a flower with intense colors and iridescent petals that captures your attention");
-        System.out.println("Also you see ");
-        System.out.println("Go back?");
+        System.out.println("You preapare toxic");
+        System.out.println("You go to ");
+        System.out.println("You come back to the crossroad");
+        ifSouthExplored = true;
     }
 
 
     void goEast() {
-        System.out.println("Find the Indian Village");
-        String hint = "You need a map. Ask the Indian Chief for it. Use the dictionary";
-        // use the dictionary
-        // oper the bag - use the knife
-        // Indian chief only want the lighter, you get the map
-        // Go to the West
-    }
+        System.out.println("You found the Indian Village");
 
+        String hint = "Ask the Indian Chief for it the next direction. Use the dictionary";
+        while(true) {
+            Item.openTheBag();
+            int input = scanner.nextInt();
+            if (input == 4) {
+                tradeWithIndianChief();
+                break;
+            }
+            else
+                System.out.println("Invalid choice. Please try arain");
+        }
+        ifEastExplored = true;
+    }
 
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         String hint = "Fill the bottle and drink";
+
         goWestAgain();
     }
 
@@ -105,5 +117,30 @@ public class Jungle extends Area {
         // disinfect the bite after a fight + 30
         // preapre the jaguar meat and eat -> the health + 50
 
+    }
+
+    @Override
+    public void getHint() {
+        if(!ifFirstHintUsed)
+            System.out.println("Your hint: Go West and find Indian Village!");
+        else
+            System.out.println("Follow the indian's advice. Go South");
+    }
+
+    void tradeWithIndianChief() {
+        System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
+        Item.openTheBag();
+        int input = scanner.nextInt();
+        while (true) {
+            if (input == 3) {
+                System.out.println("- Dear White Man, you have to go South.");
+                System.out.println("- Remember, collect everything useful in the jungle! ");
+                System.out.println("Now you know the direction");
+                System.out.println("You turn back to the crossroad");
+                break;
+            } else {
+                System.out.println("Invalid choice. Please try again");
+            }
+        }
     }
 }

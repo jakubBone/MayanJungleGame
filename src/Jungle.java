@@ -34,37 +34,9 @@ public class Jungle extends Area {
                 ", so you need to eat and drink || ");
     }
 
-    public void getCrossroadChoice() {
-        int choice;
-        while(true) {
-        System.out.println("What you want to do?");
-        System.out.println("0 - Choose direction");
-        System.out.println("1 - Open the bag");
-        // drink, prepare the item etc.
-        System.out.println("2 - Get a Hint");
-        // get first hint (Find some things that may be useful in defense of life, remebmer your are in jungle )
-        System.out.println("3 - Quit the game"); // => game over = true
-        choice = scanner.nextInt();
-            if(choice >= 0 && choice <=4){
-                switch(choice){
-                    case 0:
-                        getDirectionChoice();
-                        break;
-                    case 1:
-                        Item.openTheBag();
-                        System.out.println("You don't need to use the items right now");
-                    case 2:
-                        System.out.println("You need to choose direction");
-                    case 3:
-                        Game.quitGame();
-                        break;
-                }
-            } else
-                System.out.println("Invalid choice buddy. Please again");
-        }
-    }
 
-    public void getDirectionChoice() {
+
+    public void getDirection() {
         String direction;
         while(true) {
             System.out.println("N - Go north");
@@ -85,7 +57,7 @@ public class Jungle extends Area {
             }
         }
 
-    @Override
+
     void goNorth() {
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
@@ -101,14 +73,14 @@ public class Jungle extends Area {
         ifNorthExplored = true;
     }
 
-    @Override
+
     void goSouth() {
         System.out.println("There is a flower with intense colors and iridescent petals that captures your attention");
         System.out.println("Also you see ");
         System.out.println("Go back?");
     }
 
-    @Override
+
     void goEast() {
         System.out.println("Find the Indian Village");
         String hint = "You need a map. Ask the Indian Chief for it. Use the dictionary";
@@ -118,7 +90,7 @@ public class Jungle extends Area {
         // Go to the West
     }
 
-    @Override
+
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         String hint = "Fill the bottle and drink";

@@ -88,6 +88,16 @@ public class Jungle extends Area {
             Item.prepareToxicSpear();
     }
 
+    void goSouthAgain() {
+        System.out.println("Oh shit! The jaguar! I don't want to die!");
+        String hint = "Use the weapon!";
+        // use knife -> jaguar bit you - 80 health
+        // still fight with toxic -> jaguar die
+        // disinfect the bite after a fight + 30
+        // preapre the jaguar meat and eat -> the health + 50
+
+    }
+
     // DONE
     void goEast() {
         System.out.println("You found the Indian Village");
@@ -110,18 +120,9 @@ public class Jungle extends Area {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         String hint = "Fill the bottle and drink";
 
-        goWestAgain();
     }
 
-    void goWestAgain() {
-        System.out.println("Oh shit! The jaguar! I don't want to die!");
-        String hint = "Use the weapon!";
-        // use knife -> jaguar bit you - 80 health
-        // still fight with toxic -> jaguar die
-        // disinfect the bite after a fight + 30
-        // preapre the jaguar meat and eat -> the health + 50
 
-    }
 
     //DONE
     @Override

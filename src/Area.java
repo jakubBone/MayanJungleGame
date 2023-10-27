@@ -19,7 +19,7 @@ public abstract class Area {
                     getDirection();
                     break;
                 }else if (input == 1)
-                    Item.openTheBag(); //
+                    Item.openTheBag();
                 else if (input == 2)
                     getHint();
                 else if (input == 3)

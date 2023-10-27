@@ -42,7 +42,7 @@ public class Item {
             putItem(spear);
             System.out.println();
         } else {
-            System.out.println("You need both posion and wood sticks prepare toxic arrows ");
+            System.out.println("You need both posion and wood sticks prepare toxic spear ");
         }
     }
 

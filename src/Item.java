@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Item {
     Scanner scanner = new Scanner(System.in);
+    String poison = "poison";
+    String additionalItem = "wood sticks";
     public static ArrayList<String> bag = new ArrayList<>();
     static{
         bag.add("knife");
@@ -13,12 +15,14 @@ public class Item {
         bag.add("dictionary");
     }
 
+
     public static void openTheBag(){
+        System.out.println("Choose item: ");
         itemList();
     }
 
     public static void itemList(){
-        System.out.println("Choose item: ");
+
         int i = 0;
         for(String element: bag){
             System.out.println(i + " - " + element);
@@ -27,18 +31,19 @@ public class Item {
         System.out.println();
     }
 
-    public void addItem(String ... item){
+    public static void putItem(String ... item){
         bag.add(Arrays.toString(item));
         System.out.println("the " + item + " hidden into the bag");
     }
 
-    public void prepareToxicSpear(){
+    public static void prepareToxicSpear(){
         if (bag.contains("poison") && bag.contains("wood sticks")) {
             String spear = "toxic spear";
-            addItem(spear);
+            putItem(spear);
             System.out.println();
         } else {
             System.out.println("You need both posion and wood sticks prepare toxic arrows ");
         }
     }
+
 }

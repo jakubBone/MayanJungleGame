@@ -18,20 +18,17 @@ public abstract class Area {
                 if (input == 0) {
                     getDirection();
                     break;
-                } else if (input == 1) {
-                    Item.openTheBag();
-                    //System.out.println("You don't need to use the items right now");
-                } else if (input == 2) {
-                        getHint();
-                }
-                } else if (input == 3) {
-                    //System.out.println("Thank you for the game. See you again!");
-                    //System.exit(3);
-                } else
-                    System.out.println("Invalid choice buddy. Please again");
+                }else if (input == 1)
+                    Item.openTheBag(); //
+                else if (input == 2)
+                    getHint();
+                else if (input == 3)
+                    System.exit(0);
+            }else
+                System.out.println("Invalid choice buddy. Please again");
             }
         }
-    }
+
     public abstract void getDirection();
 
     public abstract void getHint();

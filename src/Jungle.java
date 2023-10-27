@@ -59,7 +59,7 @@ public class Jungle extends Area {
             }
         }
 
-
+    //DONE
     void goNorth() {
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
@@ -77,14 +77,18 @@ public class Jungle extends Area {
 
 
     void goSouth() {
-        System.out.println("There is a flower with intense colors and iridescent petals that captures your attention");
-        System.out.println("You preapare toxic");
-        System.out.println("You go to ");
-        System.out.println("You come back to the crossroad");
-        ifSouthExplored = true;
+        System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
+        Item.putItem("poison", "wood sticks");
+        System.out.println("Now you can prepare a spear to defend yourself against animals");
+        System.out.println("Would you like to prepare the weapon?");
+        System.out.println("Yes - 0");
+        System.out.println("No - 1");
+        int input = scanner.nextInt();
+        if(0)
+            Item.prepareToxicSpear();
     }
 
-
+    // DONE
     void goEast() {
         System.out.println("You found the Indian Village");
 
@@ -119,6 +123,7 @@ public class Jungle extends Area {
 
     }
 
+    //DONE
     @Override
     public void getHint() {
         if(!ifFirstHintUsed)
@@ -126,7 +131,7 @@ public class Jungle extends Area {
         else
             System.out.println("Follow the indian's advice. Go South");
     }
-
+    //DONE
     void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
         Item.openTheBag();

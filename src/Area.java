@@ -31,7 +31,7 @@ public abstract class Area {
 
     public int useItem(){
         Item.openTheBag();
-        return = scanner.nextInt()
+        return scanner.nextInt();
     }
     public abstract void getDirection();
 

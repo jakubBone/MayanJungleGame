@@ -111,25 +111,24 @@ public class Jungle extends Area {
             System.out.println("Yes - 0");
             System.out.println("No - 1");
             int input = scanner.nextInt();
-            if (0)
+            if (input == 0)
                 Item.prepareToxicSpear();
         }
-    }
 
     void goSouthAgain() {
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         System.out.println("Use the weapon!");
         fightWithJaguar();
-
     }
 
     //DONE
     void fightWithJaguar() {
         System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
-        if(Game.playerHealth == 50)
+        if(Game.playerHealth == 50) {
             System.out.println("You have too little health to fight");
             System.out.println("Firsty, you should drink the holy water from the cenote on the West");
-            System.out.println( "The jaguar is killing you...");
+            System.out.println("The jaguar is killing you...");
+        }
         else {
             while (true) {
                 if (useItem() == 0) {
@@ -181,7 +180,7 @@ public class Jungle extends Area {
     //DONE
     @Override
     public void getHint() {
-        if(ifWestExplored == false)
+        if(ifEastExplored == false)
             System.out.println("Your hint: Go West and find Indian Village!");
         else {
             System.out.println("Follow the indian's advice:");
@@ -193,17 +192,18 @@ public class Jungle extends Area {
     //DONE
     void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
-        Item.openTheBag();
-        int input = scanner.nextInt();
         while (true) {
+            Item.openTheBag();
+            int input = scanner.nextInt();
             if (input == 3) {
                 System.out.println("- Dear White Man, first go North and find the Mayan sign");
                 System.out.println("- Next you can go West to find holly water");
                 System.out.println("- At the end go South to find the ");
                 System.out.println("You turn back to the crossroad");
+
                 break;
             } else {
-                System.out.println("Invalid choice. Please try again");
+                System.out.println("Invalid choice. He wants the lighter. Please try again");
             }
         }
     }

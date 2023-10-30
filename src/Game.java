@@ -4,11 +4,11 @@ import java.util.Scanner;
 public class Game {
     Scanner scanner = new Scanner(System.in);
     static String playerName;
-    static int playerHealth == 50;
+    static int playerHealth = 50;
 
-    Jungle jungle = new Jungle();
 
     void gamePlay() {
+        Jungle jungle = new Jungle();
         System.out.print("Welcome in game. Please, enter your name: ");
         playerName = scanner.nextLine();
         System.out.println();
@@ -16,7 +16,9 @@ public class Game {
 
         jungle.placeDescribingScene();
         jungle.firstBagCheckingScene();
-        jungle.getMainChoice();
+        for (int i = 0; i < 4; i++){
+            jungle.getMainChoice();
+        }
 
     }
 

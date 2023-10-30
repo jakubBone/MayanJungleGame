@@ -15,25 +15,18 @@ public class Item {
         bag.add("dictionary");
     }
 
-
     public static void openTheBag(){
-        System.out.println("Choose item: ");
+        System.out.println("Choose an item:");
         itemList();
     }
 
     public static void itemList(){
-
         int i = 0;
         for(String element: bag){
             System.out.println(i + " - " + element);
             i++;
         }
         System.out.println();
-    }
-
-    public static void putItem(String ... item){
-        bag.add(Arrays.toString(item));
-        System.out.println("the " + item + " hidden into the bag");
     }
 
     public static void prepareToxicSpear(){
@@ -46,4 +39,10 @@ public class Item {
         }
     }
 
+    public static void putItem(String ... item){
+        bag.add(Arrays.toString(item));
+        System.out.println("the " + item + " hidden into the bag");
+    }
 }
+
+

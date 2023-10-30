@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Game {
     Scanner scanner = new Scanner(System.in);
     static String playerName;
-    static int playerHealth;
+    static int playerHealth == 50;
 
     Jungle jungle = new Jungle();
 

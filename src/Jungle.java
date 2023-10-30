@@ -4,9 +4,11 @@ public class Jungle extends Area {
 
     boolean ifNorthExplored = false;
     boolean ifSouthExplored = false;
+    boolean firstSouthExplored = false;
+    boolean secondSouthExplored = false;
     boolean ifEastExplored = false;
     boolean ifWestExplored = false;
-    boolean ifFirstHintUsed = false;
+
     Scanner scanner = new Scanner(System.in);
 
 
@@ -37,27 +39,53 @@ public class Jungle extends Area {
         System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
         System.out.println("Find something to eat and drink to get stronger");
     }
+
+    @Override
+    public void lastScene() {
+        System.out.println("You go straight. suddenly there is light in your path");
+        System.out.println("This is the end of the jungle. You see some buildings. What is this place?");
+    }
+
     @Override
     public void getDirection() {
         String direction;
-        while(true) {
+        while (true) {
             System.out.println("N - Go north");
             System.out.println("S - Go south");
             System.out.println("E - Go east");
             System.out.println("W - Go west");
+
             direction = scanner.nextLine();
-            if (direction.equals("N") && !ifNorthExplored)
+
+            if (direction.equals("N") && !ifNorthExplored) {
                 goNorth();
-            else if (direction.equals("S") && !ifSouthExplored)
-                goSouth();
-            else if (direction.equals("E") && !ifEastExplored)
+                break;
+            }
+            else if (direction.equals("S") && !ifSouthExplored && (!firstSouthExplored || !secondSouthExplored)) {
+                if (!firstSouthExplored) {
+                    goSouth();
+                    firstSouthExplored = true;
+                }
+                else {
+                    goSouthAgain();
+                    secondSouthExplored = true;
+                }
+                break;
+            }
+            else if (direction.equals("E") && !ifEastExplored) {
                 goEast();
-            else if (direction.equals("W") && !ifWestExplored)
+                break;
+            }
+            else if (direction.equals("W") && !ifWestExplored) {
                 goWest();
-            else
-                System.out.println("Invalid choice or you have been here before. Please try again of change direction.");
+                break;
+            }
+            else {
+                System.out.println("Invalid choice or you have been here before. Please try again or change direction.");
             }
         }
+    }
+
 
     //DONE
     void goNorth() {
@@ -75,34 +103,54 @@ public class Jungle extends Area {
         ifNorthExplored = true;
     }
 
-
     void goSouth() {
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
         Item.putItem("poison", "wood sticks");
         System.out.println("Now you can prepare a spear to defend yourself against animals");
-        System.out.println("Would you like to prepare the weapon?");
-        System.out.println("Yes - 0");
-        System.out.println("No - 1");
-        int input = scanner.nextInt();
-        if(0)
-            Item.prepareToxicSpear();
+            System.out.println("Would you like to prepare the weapon?");
+            System.out.println("Yes - 0");
+            System.out.println("No - 1");
+            int input = scanner.nextInt();
+            if (0)
+                Item.prepareToxicSpear();
+        }
     }
 
     void goSouthAgain() {
-        System.out.println("Oh shit! The jaguar! I don't want to die!");
-        String hint = "Use the weapon!";
-        // use knife -> jaguar bit you - 80 health
-        // still fight with toxic -> jaguar die
-        // disinfect the bite after a fight + 30
-        // preapre the jaguar meat and eat -> the health + 50
+        System.out.println("Oh shit! The jaguar! You have to fight with him!");
+        System.out.println("Use the weapon!");
+        fightWithJaguar();
 
+    }
+
+    //DONE
+    void fightWithJaguar() {
+        System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
+        if(Game.playerHealth == 50)
+            System.out.println("You have too little health to fight");
+            System.out.println("Firsty, you should drink the holy water from the cenote on the West");
+            System.out.println( "The jaguar is killing you...");
+        else {
+            while (true) {
+                if (useItem() == 0) {
+                    if (Item.bag.contains("knife")) {
+                        System.out.println("The knife is to small to kill jaguar! The jaguar is bites you and you die");
+                        System.exit(0);
+                    } else
+                        System.out.println("There is no knife in the bag. Use another weapon!");
+                } else if (useItem() == 4) {
+                    System.out.println("You kill the jaguar using the toxic sprear");
+                    break;
+                } else
+                    System.out.println("Invalid choise. Use the weapon!");
+            }
+        }
     }
 
     // DONE
     void goEast() {
         System.out.println("You found the Indian Village");
-
-        String hint = "Ask the Indian Chief for it the next direction. Use the dictionary";
+        System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
         while(true) {
             Item.openTheBag();
             int input = scanner.nextInt();
@@ -118,19 +166,29 @@ public class Jungle extends Area {
 
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        String hint = "Fill the bottle and drink";
-
+        System.out.println("Fill the bottle and drink");
+        while (true) {
+            if (useItem() == 2) {
+                Game.playerHealth += 50;
+                System.out.println("Bottle is fill by water. You drunk and your health increase to " + Game.playerHealth);
+                break;
+            }
+            else
+                System.out.println("Invalid choice buddy. Fill the bottle");
+        }
     }
-
-
 
     //DONE
     @Override
     public void getHint() {
-        if(!ifFirstHintUsed)
+        if(ifWestExplored == false)
             System.out.println("Your hint: Go West and find Indian Village!");
-        else
-            System.out.println("Follow the indian's advice. Go South");
+        else {
+            System.out.println("Follow the indian's advice:");
+            System.out.println("First hint: Go North");
+            System.out.println("Second hint: Go West");
+            System.out.println("Last hint: Go South");
+        }
     }
     //DONE
     void tradeWithIndianChief() {
@@ -139,9 +197,9 @@ public class Jungle extends Area {
         int input = scanner.nextInt();
         while (true) {
             if (input == 3) {
-                System.out.println("- Dear White Man, you have to go South.");
-                System.out.println("- Remember, collect everything useful in the jungle! ");
-                System.out.println("Now you know the direction");
+                System.out.println("- Dear White Man, first go North and find the Mayan sign");
+                System.out.println("- Next you can go West to find holly water");
+                System.out.println("- At the end go South to find the ");
                 System.out.println("You turn back to the crossroad");
                 break;
             } else {

@@ -3,8 +3,9 @@ public class TestClass {
         Jungle jungle = new Jungle();
         jungle.placeDescribingScene();
         jungle.firstBagCheckingScene();
-        jungle.getMainChoice();
-
+        for (int i = 0; i < 4; i++){
+            jungle.getMainChoice();
+        }
 
     }
 }

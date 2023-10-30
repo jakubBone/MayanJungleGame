@@ -163,6 +163,7 @@ public class Jungle extends Area {
         ifEastExplored = true;
     }
 
+    //DONE
     void goWest() {
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         System.out.println("Fill the bottle and drink");
@@ -175,6 +176,7 @@ public class Jungle extends Area {
             else
                 System.out.println("Invalid choice buddy. Fill the bottle");
         }
+        ifWestExplored = true;
     }
 
     //DONE

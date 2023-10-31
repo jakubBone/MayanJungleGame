@@ -7,6 +7,7 @@ public abstract class Area {
 
     public abstract void lastScene();
 
+
     public void getMainChoice() {
         String input;
         while (true) {
@@ -28,10 +29,31 @@ public abstract class Area {
             }
 
         }
-
-    public int useItem(){
+    public String chooseItem() {
         Item.openTheBag();
-        return scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        if (choice >= 0 && choice < Item.bag.size()) {
+            String itemSelected = Item.bag.get(choice);
+
+            if (isItemUsefulNow(itemSelected)) {
+                return itemSelected;
+            } else {
+                System.out.println("This item is not useful in the current situation.");
+                return null;
+            }
+        } else {
+            System.out.println("Invalid choice. Please try again.");
+            return chooseItem();
+        }
+    }
+
+    public boolean isItemUsefulNow(int item){
+    }
+
+    public String  useItem(){
+        Item.openTheBag();
+        return scanner.nextLine();
     }
     public abstract void getDirection();
     public void getHint(){

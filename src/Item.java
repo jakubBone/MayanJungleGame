@@ -1,48 +1,52 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Item {
     Scanner scanner = new Scanner(System.in);
-    String poison = "poison";
-    String additionalItem = "wood sticks";
-    public static ArrayList<String> bag = new ArrayList<>();
-    static{
-        bag.add("knife");
-        bag.add("tequila");
-        bag.add("bottle");
-        bag.add("lighter");
-        bag.add("dictionary");
-    }
+    String additionalItem1 = "POISON";
+    String additionalItem2 = "WOOD STICKS";
+    public static List<String> bag = new ArrayList<>(Arrays.asList("knife", "tequila", "bottle", "lighter", "dictionary"));
 
     public static void openTheBag(){
-        System.out.println("Choose an item:");
+        System.out.println("Your items: ");
         itemList();
     }
+    public static void addItem(String item) {
+        bag.add(item);
+    }
 
+    public static void removeItem(String item) {
+        bag.remove(item);
+    }
     public static void itemList(){
-        int i = 0;
-        for(String element: bag){
-            System.out.println(i + " - " + element);
-            i++;
+       for(int i = 0; i < Item.bag.size(); i++) {
+            System.out.println(i + " - " + Item.bag.get(i));
         }
-        System.out.println();
     }
 
     public static void prepareToxicSpear(){
-        if (bag.contains("poison") && bag.contains("wood sticks")) {
-            String spear = "toxic spear";
-            putItem(spear);
-            System.out.println();
-        } else {
-            System.out.println("You need both posion and wood sticks prepare toxic spear ");
+            if (bag.contains("poison") && bag.contains("wood sticks")) {
+                addItem("toxic spear");
+                removeItem("poison");
+                removeItem("wood sticks");
+                System.out.println("You have prepared a toxic spear.");
+            } else {
+                System.out.println("You need both poison and wood sticks to prepare a toxic spear.");
+            }
+        }
+    public static void putItems(String... items) {
+        bag.addAll(Arrays.asList(items));
+        for (String item : items) {
+            System.out.println("The item " + item + " added to the bag.");
         }
     }
-
-    public static void putItem(String ... item){
-        bag.add(Arrays.toString(item));
-        System.out.println("the " + item + " hidden into the bag");
+    @Override
+    public String toString() {
+        return additionalItem1 + additionalItem2;
     }
 }
+
 
 

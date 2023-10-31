@@ -14,7 +14,7 @@ public class Jungle extends Area {
 
 
     @Override
-    public void placeDescribingScene() {
+    public void firstScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
                 "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
                 "The first thing you feel is heat and humidity. There are a lot of tropical trees and birdsong like " +
@@ -55,7 +55,7 @@ public class Jungle extends Area {
             System.out.println("E - Go east");
             System.out.println("W - Go west");
 
-            direction = scanner.nextLine();
+            direction = scanner.nextLine().toUpperCase();
 
             if (direction.equals("N") && !ifNorthExplored) {
                 goNorth();
@@ -121,13 +121,14 @@ public class Jungle extends Area {
         fightWithJaguar();
     }
 
-    //DONE
+    // what if there is no spear in the bag?
     void fightWithJaguar() {
-        System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
         if(Game.playerHealth == 50) {
-            System.out.println("You have too little health to fight");
-            System.out.println("Firsty, you should drink the holy water from the cenote on the West");
-            System.out.println("The jaguar is killing you...");
+            System.out.println("You health is ||" + Game.playerHealth + "|| It's so little");
+            System.out.println("Before the fight you should have found an item for strengthen your health, so...");
+            System.out.println("...sorry buddy, the jaguar is killing you...");
+            System.out.println("The End");
+            System.exit(0);
         }
         else {
             while (true) {
@@ -183,12 +184,9 @@ public class Jungle extends Area {
     @Override
     public void getHint() {
         if(ifEastExplored == false)
-            System.out.println("Your hint: Go West and find Indian Village!");
+            System.out.println("Your hint: Go East and find Indian Village!");
         else {
-            System.out.println("Follow the indian's advice:");
-            System.out.println("First hint: Go North");
-            System.out.println("Second hint: Go West");
-            System.out.println("Last hint: Go South");
+            getIndianHint();
         }
     }
     //DONE
@@ -198,15 +196,17 @@ public class Jungle extends Area {
             Item.openTheBag();
             int input = scanner.nextInt();
             if (input == 3) {
-                System.out.println("- Dear White Man, first go North and find the Mayan sign");
-                System.out.println("- Next you can go West to find holly water");
-                System.out.println("- At the end go South to find the ");
-                System.out.println("You turn back to the crossroad");
-
+                getIndianHint();
                 break;
             } else {
                 System.out.println("Invalid choice. He wants the lighter. Please try again");
             }
         }
+    }
+    void getIndianHint(){
+        System.out.println("- Dear White Man, these are my hints:");
+        System.out.println("First: Go North to find a sign");
+        System.out.println("Next: Go West to heal you");
+        System.out.println("At the end: Go South and continue straight");
     }
 }

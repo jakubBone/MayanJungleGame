@@ -14,7 +14,7 @@ public class Game {
         System.out.println();
         System.out.println("Hello " + playerName + "Let's begin the game!");
 
-        jungle.placeDescribingScene();
+        jungle.firstScene();
         jungle.firstBagCheckingScene();
         for (int i = 0; i < 4; i++){
             jungle.getMainChoice();

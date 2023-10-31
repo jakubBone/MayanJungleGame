@@ -11,7 +11,7 @@ public class Jungle extends Area {
 
     Scanner scanner = new Scanner(System.in);
 
-
+    boolean ifPlayerIsHere;
 
     @Override
     public void firstScene() {
@@ -94,10 +94,10 @@ public class Jungle extends Area {
         System.out.println();
         System.out.println("- That is this is the Big Dipper constellation! - you think");
         System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future");
-        System.out.println("You come back to the crossroad");
+        System.out.println("You come back to the Crossroad");
         ifNorthExplored = true;
     }
-
+    //DONE
     void goSouth() {
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
         Item.putItems("poison", "wood sticks");
@@ -109,10 +109,9 @@ public class Jungle extends Area {
         if (input.equals("0"))
             Item.prepareToxicSpear();
     }
-
+    // IN PROGRESS
     void goSouthAgain() {
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
-
         fightWithJaguar();
     }
 

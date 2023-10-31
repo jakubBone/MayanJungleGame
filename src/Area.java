@@ -7,6 +7,7 @@ public abstract class Area {
 
     public abstract void lastScene();
 
+    boolean ifPlayerIsHere;
 
     public void getMainChoice() {
         String input;
@@ -29,15 +30,23 @@ public abstract class Area {
             }
 
         }
-    public String chooseItem() {
+    public abstract void getDirection();
+    public void getHint(){
+    }
+    public String useItem(){
+        Item.openTheBag();
+        return scanner.nextLine();
+    }
+
+    // IN PROGRESS
+    public static String chooseItem() {
         Item.openTheBag();
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        if (choice >= 0 && choice < Item.bag.size()) {
-            String itemSelected = Item.bag.get(choice);
-
-            if (isItemUsefulNow(itemSelected)) {
-                return itemSelected;
+        int input = scanner.nextInt();
+        if (input >= 0 && input < Item.bag.size()) {
+            String selectedItem = Item.bag.get(input);
+            if (isItemUsefulNow(selectedItem)) {
+                return selectedItem;
             } else {
                 System.out.println("This item is not useful in the current situation.");
                 return null;
@@ -47,17 +56,12 @@ public abstract class Area {
             return chooseItem();
         }
     }
-
-    public boolean isItemUsefulNow(int item){
+    // IN PROGRESS
+    public boolean isItemUsefulNow(String item) {
+        if(ifPlayerIsHere)
+            return true;
     }
 
-    public String  useItem(){
-        Item.openTheBag();
-        return scanner.nextLine();
-    }
-    public abstract void getDirection();
-    public void getHint(){
-    }
 
 
 }

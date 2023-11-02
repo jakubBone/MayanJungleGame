@@ -24,7 +24,7 @@ public class Jungle extends Area {
     }
 
     public void firstBagCheckingScene() {
-        System.out.println("You have your bag. Let's check the content")
+        System.out.println("You have your bag. Let's check the content");
         System.out.println("Your bag: \n");
         Item.itemList();
         System.out.println();
@@ -78,7 +78,7 @@ public class Jungle extends Area {
         }
     }
     void goNorth() {
-        Item.whereIsPlayerNow = "North"
+        Item.whereIsPlayerNow = "North";
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
         System.out.println("They would be useful. Do you want to take them?");
         System.out.println("0 - Yes");
@@ -91,21 +91,27 @@ public class Jungle extends Area {
         } else {
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         }
-        ifNorthExplored = true;
         getMainChoice();
     }
 
     void goFirstSouth() {
-        Item.whereIsPlayerNow = "FirstSouth"
+        Item.whereIsPlayerNow = "FirstSouth";
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        System.out.println("Use the bottle");
+        System.out.println("Would you like to use the bottle?");
+        System.out.println("0 - Yes");
+        System.out.println("1 - No");
+        String input = scanner.nextLine();
+        if(input.equals("0")) {
+            Item.useBottle();
+        } else
+            System.out.println("Remember, you are in Jungle. All items would be useful...");
+        ifFirstSouthExplored = true;
         getMainChoice();
-        if(Item.ifBootleIsFilled)
-            ifFirstSouthExplored = true;
-        }
+
+    }
 
     void goSecondSouth() {
-        Item.whereIsPlayerNow = "SecondSouth"
+        Item.whereIsPlayerNow = "SecondSouth";
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         fightWithJaguar();
     }
@@ -113,19 +119,20 @@ public class Jungle extends Area {
     void fightWithJaguar() {
         if (Game.playerHealth == 50) {
             System.out.println("You health is ||" + Game.playerHealth + "|| It's so little");
-            System.out.println("Before the fight you should have found an item for strengthen your health, so...");
-            System.out.println("...sorry buddy, the jaguar is killing you...");
+            System.out.println("You should have drunk the holy water from Cenote to heel you!");
+            System.out.println("The jaguar is killing you...");
             System.out.println("The End");
             System.exit(0);
         } else {
             System.out.println("Use the weapon!");
+            Item.openTheBag();
             Item.useItem();
         }
     }
 
     //DONE
     void goEast() {
-        Item.whereIsPlayerNow = "East"
+        Item.whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
         System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
         while (true) {
@@ -137,13 +144,13 @@ public class Jungle extends Area {
             } else
                 System.out.println("Invalid choice. Please try arain");
         }
-        System.out.println("You come back to the Crossroad");
         ifEastExplored = true;
+        getMainChoice();
     }
 
     //DONE
     void goWest() {
-        Item.whereIsPlayerNow = "West"
+        Item.whereIsPlayerNow = "West";
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
         System.out.println();
@@ -187,6 +194,6 @@ public class Jungle extends Area {
             System.out.println("1st hint: Go North to find a sign");
             System.out.println("2nd hint: Go West to heal you");
             System.out.println("3rd hint: Go South and continue straight");
-        }
     }
 }
+

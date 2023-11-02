@@ -93,7 +93,6 @@ public class Item {
             Game.playerHealth = 100;
             ifBootleIsFilled = true;
             System.out.println("You filled bottle by water. You drunk it and your health increase to " + Game.playerHealth);
-
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }

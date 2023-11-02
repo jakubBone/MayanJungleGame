@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 public abstract class Area {
+
     Scanner scanner = new Scanner(System.in);
 
     public abstract void firstScene();
 
     public abstract void lastScene();
 
-    boolean ifPlayerIsHere;
+
 
     public void getMainChoice() {
         String input;
@@ -22,8 +23,10 @@ public abstract class Area {
                         getDirection();
                         break;
                     }
-                    else if (input.equals("1"))
+                    else if (input.equals("1")) {
                         Item.openTheBag();
+                        Item.useItem();
+                    }
                     else if (input.equals("2"))
                         getHint();
                     else if (input.equals("3"))
@@ -36,35 +39,5 @@ public abstract class Area {
     public abstract void getDirection();
     public void getHint(){
     }
-    public String useItem(){
-        Item.openTheBag();
-        return scanner.nextLine();
-    }
-
-    // IN PROGRESS
-    public static String chooseItem() {
-        Item.openTheBag();
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        if (input >= 0 && input < Item.bag.size()) {
-            String selectedItem = Item.bag.get(input);
-            if (isItemUsefulNow(selectedItem)) {
-                return selectedItem;
-            } else {
-                System.out.println("This item is not useful in the current situation.");
-                return null;
-            }
-        } else {
-            System.out.println("Invalid choice. Please try again.");
-            return chooseItem();
-        }
-    }
-    // IN PROGRESS
-    public boolean isItemUsefulNow(String item) {
-        if(ifPlayerIsHere)
-            return true;
-    }
-
-
 
 }

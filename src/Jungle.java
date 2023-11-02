@@ -4,8 +4,8 @@ public class Jungle extends Area {
 
     boolean ifNorthExplored = false;
     boolean ifSouthExplored = false;
-    boolean firstSouthExplored = false;
-    boolean secondSouthExplored = false;
+    boolean ifFirstSouthExplored = false;
+    boolean ifSecondSouthExplored = false;
     boolean ifEastExplored = false;
     boolean ifWestExplored = false;
 
@@ -19,30 +19,27 @@ public class Jungle extends Area {
                 "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
                 "The first thing you feel is heat and humidity. There are a lot of tropical trees and birdsong like " +
                 "you've never heard before... - Where the hell I am ?! - you think ");
-        System.out.println("- Ok, calm down buddy - you think - Everything will be fine...");
-        System.out.println("You get up and go straight, but you don't know where...");
+        System.out.println("- Calm down buddy - you think - Everything will be fine...");
+        System.out.println("You get up and go straight, and you realised that probably you're somewhere in the mexican jungle... \n ");
     }
 
     public void firstBagCheckingScene() {
-        System.out.println("You realised that you have your bag. - Oh thank God! Let's check the content. I hope" +
-                "there will be something useful...");
+        System.out.println("You have your bag. Let's check the content")
+        System.out.println("Your bag: \n");
         Item.itemList();
         System.out.println();
-        System.out.println("- Ok, knife, lighter and... tequila! Yeah, together forever..." +
-                "Unfortunately there is no any map... ");
-        System.out.println("suddenly you find the path! As if someone had been here before... " +
-                "You keep following it until you find a crossroads with 4 paths -" +
-                " north, south, east and west paths");
+        System.out.println("You are going through the jungle. Suddenly, you find a crossroads with 4 directions -" +
+                " North, South, East and West");
         System.out.println();
-        System.out.println("-Let's try to quit this place!");
+        System.out.println("-Let's try to quit this place - you think");
         System.out.println();
         System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
-        System.out.println("Find something to eat and drink to get stronger");
+        System.out.println("Find something to get stronger");
     }
 
     @Override
     public void lastScene() {
-        System.out.println("You go straight. suddenly there is light in your path");
+        System.out.println("You are going straight. Suddenly there is light at the end on th path");
         System.out.println("This is the end of the jungle. You see some buildings. What is this place?");
     }
 
@@ -60,13 +57,13 @@ public class Jungle extends Area {
             if (direction.equals("N") && !ifNorthExplored) {
                 goNorth();
                 break;
-            } else if (direction.equals("S") && !ifSouthExplored && (!firstSouthExplored || !secondSouthExplored)) {
-                if (!firstSouthExplored) {
+            } else if (direction.equals("S") && !ifSouthExplored && (!ifFirstSouthExplored || !ifSecondSouthExplored)) {
+                if (!ifFirstSouthExplored) {
                     goSouth();
-                    firstSouthExplored = true;
+                    ifFirstSouthExplored = true;
                 } else {
                     goSouthAgain();
-                    secondSouthExplored = true;
+                    ifSecondSouthExplored = true;
                 }
                 break;
             } else if (direction.equals("E") && !ifEastExplored) {
@@ -84,6 +81,22 @@ public class Jungle extends Area {
 
     //DONE
     void goNorth() {
+        System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
+        System.out.println("They would be useful. Do you want to take them?");
+        String input = scanner.nextLine();
+        if(input.equals(input)) {
+            Item.putItems("poison", "wood sticks");
+            System.out.println("Now you can prepare a spear to defend yourself against animals");
+            ifNorthExplored = true;
+        } else {
+            System.out.println("Remember, you are in Jungle. All items would be useful...");
+        }
+        System.out.println("You come back to the Crossroad");
+
+    }
+
+    // DONE
+    void goSouth() {
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
         System.out.println();
@@ -94,25 +107,14 @@ public class Jungle extends Area {
         System.out.println();
         System.out.println("- That is this is the Big Dipper constellation! - you think");
         System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future");
-        System.out.println("You come back to the Crossroad");
-        ifNorthExplored = true;
+        ifFirstSouthExplored = true;
     }
-    //DONE
-    void goSouth() {
-        System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
-        Item.putItems("poison", "wood sticks");
-        System.out.println("Now you can prepare a spear to defend yourself against animals");
-        System.out.println("Would you like to prepare the weapon?");
-        System.out.println("Yes - 0");
-        System.out.println("No - 1");
-        String input = scanner.nextLine();
-        if (input.equals("0"))
-            Item.prepareToxicSpear();
-    }
+
     // IN PROGRESS
     void goSouthAgain() {
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         fightWithJaguar();
+        lastScene();
     }
 
     // what if there is no spear in the bag?
@@ -142,7 +144,7 @@ public class Jungle extends Area {
         }
     }
 
-    // DONE
+    //DONE
     void goEast() {
         System.out.println("You found the Indian Village");
         System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
@@ -155,7 +157,9 @@ public class Jungle extends Area {
             } else
                 System.out.println("Invalid choice. Please try arain");
         }
+        System.out.println("You come back to the Crossroad");
         ifEastExplored = true;
+
     }
 
     //DONE
@@ -173,17 +177,6 @@ public class Jungle extends Area {
         ifWestExplored = true;
     }
 
-    //DONE
-    @Override
-    public void getHint() {
-        if (!ifEastExplored)
-            System.out.println("Your hint: Go East and find Indian Village!");
-        else {
-            getIndianHint();
-        }
-    }
-
-    //DONE
     void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
         while (true) {
@@ -198,10 +191,21 @@ public class Jungle extends Area {
         }
     }
 
+    //DONE
+    @Override
+    public void getHint() {
+        if (!ifEastExplored)
+            System.out.println("Your hint: Go East and find Indian Village!");
+        else {
+            getIndianHint();
+        }
+    }
+    // Done
     void getIndianHint() {
-        System.out.println("- Dear White Man, these are my hints:");
-        System.out.println("First: Go North to find a sign");
-        System.out.println("Next: Go West to heal you");
-        System.out.println("At the end: Go South and continue straight");
+        System.out.println("- Dear White Man, these are the hints: \n");
+            System.out.println("1st hint: Go North to find a sign");
+            System.out.println("2nd hint: Go West to heal you");
+            System.out.println("3rd hint: Go South and continue straight");
+        }
     }
 }

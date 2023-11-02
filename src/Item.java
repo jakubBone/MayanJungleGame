@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +9,7 @@ public class Item {
     String additionalItem1 = "POISON";
     String additionalItem2 = "WOOD STICKS";
 
+    public static boolean ifBootleIsFilled = false;
     public static String whereIsPlayerNow = "Crossroad";
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
@@ -39,27 +41,45 @@ public class Item {
     public static void useItem() {
         System.out.println("Choose the item:");
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if (input.equals("0"))
-            useKnife();
-        else if (input.equals("1"))
-            useTequila();
-        else if (input.equals("2"))
-            useBottle();
-        else if (input.equals("3"))
-            useLighter();
-        else if (input.equals("4"))
-            useDictionary();
+        int input = scanner.nextInt();
+        while(true){
+        if(input >= 0 && input <= bag.size()) {
+            if (input == 0) {
+                useKnife();
+                break;
+            } else if (input == 1) {
+                useTequila();
+                break;
+            } else if (input == 2) {
+                useBottle();
+                break;
+            } else if (input == 3) {
+                useLighter();
+                break;
+            } else if (input == 4) {
+                useDictionary();
+                break;
+            } else {
+                if (bag.contains("toxic spear")) {
+                    useToxicSpear();
+                    break;
+                } else {
+                    preapareToxicSpear();
+                    break;
+                }
+            }
+        }
         else
-            preapareToxicSpear();
-    }
-
+            System.out.println("Invalid choice buddy. Please again");
+        }
     }
 
     public static void useKnife(){
-        if(whereIsPlayerNow.equals("SecondSouth"))
+        if(whereIsPlayerNow.equals("SecondSouth")) {
             System.out.println("The knife is to small to kill jaguar. Change the weapon!");
-        else
+            System.out.println("The end");
+            System.exit(0);
+        } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
     public  static void useTequila(){
@@ -71,10 +91,13 @@ public class Item {
     public static void  useBottle(){
         if(whereIsPlayerNow.equals("FirstSouth")) {
             Game.playerHealth = 100;
+            ifBootleIsFilled = true;
             System.out.println("You filled bottle by water. You drunk it and your health increase to " + Game.playerHealth);
+
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
+
 
     public static void  useLighter(){
         if(whereIsPlayerNow.equals("East")) {
@@ -88,13 +111,29 @@ public class Item {
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
-    public static void preapareToxicSpear(){
+
+    public static void useToxicSpear(){
+        if(whereIsPlayerNow.equals("SecondSouth"))
+            System.out.println("You kill the jaguar using the toxic spear");
+        else {
+            System.out.println("The item not useful in this situation. Choose another the item.");
+        }
+    }
+
+    public static void preapareToxicSpear() {
+        if (whereIsPlayerNow.equals("SecondSouth")) {
+            System.out.println("It's to late for preparing the weapon. The Jaguar is killing you");
+            System.out.println("The End");
+            System.exit(0);
+        } else {
             System.out.println("Let's use the poison and wood sticks to prepare a weapon");
             addItem("toxic spear");
             removeItem("poison");
             removeItem("wood sticks");
             System.out.println("You have prepared a dangerous toxic.");
         }
+    }
+
     public static void addItem(String item) {
         bag.add(item);
     }

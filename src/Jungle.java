@@ -77,27 +77,6 @@ public class Jungle extends Area {
             }
         }
     }
-
-
-    //DONE
-    /*void goNorth() {
-        Item.whereIsPlayerNow = "North"
-        System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
-        System.out.println("They would be useful. Do you want to take them?");
-        String input = scanner.nextLine();
-        if(input.equals(input)) {
-            Item.putItems("poison", "wood sticks");
-            System.out.println("Now you can prepare a spear to defend yourself against animals");
-            ifNorthExplored = true;
-        } else {
-            System.out.println("Remember, you are in Jungle. All items would be useful...");
-        }
-        System.out.println("You come back to the Crossroad");
-        ifNorthExplored = true;
-
-    }*/
-
-
     void goNorth() {
         Item.whereIsPlayerNow = "North"
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
@@ -107,41 +86,31 @@ public class Jungle extends Area {
         String input = scanner.nextLine();
         if(input.equals("0")) {
             Item.putItems("poison", "wood sticks");
-            System.out.println("Now you can prepare a spear to defend yourself against animals");
+            System.out.println("Now you can use them to prepare a new weapon - toxic spear ");
             ifNorthExplored = true;
         } else {
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         }
-        System.out.println("You come back to the Crossroad");
         ifNorthExplored = true;
-
+        getMainChoice();
     }
-    // DONE
-    /*void goFirstSouth() {
+
+    void goFirstSouth() {
         Item.whereIsPlayerNow = "FirstSouth"
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        System.out.println("Fill the bottle and drink");
-        while (true) {
-            if (useItem().equals("2")) {
-                Game.playerHealth += 50;
-                System.out.println("Bottle is fill by water. You drunk and your health increase to " + Game.playerHealth);
-                break;
-            } else
-                System.out.println("Invalid choice buddy. Fill the bottle");
+        System.out.println("Use the bottle");
+        getMainChoice();
+        if(Item.ifBootleIsFilled)
+            ifFirstSouthExplored = true;
         }
-    }*/
 
-    // IN PROGRESS
     void goSecondSouth() {
         Item.whereIsPlayerNow = "SecondSouth"
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         fightWithJaguar();
-        lastScene();
-
     }
 
-    // what if there is no spear in the bag?
-    /*void fightWithJaguar() {
+    void fightWithJaguar() {
         if (Game.playerHealth == 50) {
             System.out.println("You health is ||" + Game.playerHealth + "|| It's so little");
             System.out.println("Before the fight you should have found an item for strengthen your health, so...");
@@ -151,21 +120,8 @@ public class Jungle extends Area {
         } else {
             System.out.println("Use the weapon!");
             Item.useItem();
-            while (true) {
-                if (Item.useItem().equals("0")) {
-                    if (Item.bag.contains("knife")) {
-                        System.out.println("The knife is to small to kill jaguar! The jaguar is bites you and you die");
-                        System.exit(0);
-                    } else
-                        System.out.println("There is no knife in the bag. Use another weapon!");
-                } else if (Item.useItem().equals("4")) {
-                    System.out.println("You kill the jaguar using the toxic sprear");
-                    break;
-                } else
-                    System.out.println("Invalid choise. Use the weapon!");
-            }
         }
-    }*/
+    }
 
     //DONE
     void goEast() {

@@ -16,10 +16,11 @@ public class Game {
 
         jungle.firstScene();
         jungle.firstBagCheckingScene();
-        for (int i = 0; i < 4; i++){
+
+        while(true) {
             jungle.getMainChoice();
+            }
         }
 
     }
 
-}

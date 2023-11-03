@@ -11,8 +11,6 @@ public class Jungle extends Area {
 
     Scanner scanner = new Scanner(System.in);
 
-    boolean ifPlayerIsHere;
-
     @Override
     public void firstScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
@@ -26,7 +24,7 @@ public class Jungle extends Area {
     public void firstBagCheckingScene() {
         System.out.println("You have your bag. Let's check the content");
         System.out.println("Your bag: \n");
-        Item.itemList();
+        Item.openTheBag();
         System.out.println();
         System.out.println("You are going through the jungle. Suddenly, you find a crossroads with 4 directions -" +
                 " North, South, East and West");
@@ -130,7 +128,6 @@ public class Jungle extends Area {
         }
     }
 
-    //DONE
     void goEast() {
         Item.whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
@@ -148,7 +145,7 @@ public class Jungle extends Area {
         getMainChoice();
     }
 
-    //DONE
+
     void goWest() {
         Item.whereIsPlayerNow = "West";
         System.out.println("You find a huge tree with strange sign on it. " +
@@ -162,10 +159,9 @@ public class Jungle extends Area {
         System.out.println("- That is this is the Big Dipper constellation! - you think");
         System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future");
         ifWestExplored = true;
-
     }
 
-    void tradeWithIndianChief() {
+    public void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
         while (true) {
             Item.openTheBag();
@@ -179,7 +175,6 @@ public class Jungle extends Area {
         }
     }
 
-    //DONE
     @Override
     public void getHint() {
         if (!ifEastExplored)
@@ -188,7 +183,7 @@ public class Jungle extends Area {
             getIndianHint();
         }
     }
-    // Done
+
     void getIndianHint() {
         System.out.println("- Dear White Man, these are the hints: \n");
             System.out.println("1st hint: Go North to find a sign");

@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,10 +15,6 @@ public class Item {
 
     public static void openTheBag() {
         System.out.println("Your items: ");
-        itemList();
-    }
-
-    public static void itemList() {
         for (int i = 0; i < Item.bag.size(); i++) {
             System.out.println(i + " - " + Item.bag.get(i));
         }
@@ -40,6 +35,7 @@ public class Item {
     // In progress
     public static void useItem() {
         System.out.println("Choose the item:");
+        openTheBag();
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
         while(true){
@@ -88,7 +84,7 @@ public class Item {
         else
             System.out.println("You are drunk. Don't lost your bag!");
     }
-    public static void  useBottle(){
+    public static void useBottle(){
         if(whereIsPlayerNow.equals("FirstSouth")) {
             Game.playerHealth = 100;
             ifBootleIsFilled = true;
@@ -104,6 +100,7 @@ public class Item {
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
+
     public static void useDictionary(){
         if(whereIsPlayerNow.equals("East"))
             System.out.println("Let's try to translate the Nahuatl to English");

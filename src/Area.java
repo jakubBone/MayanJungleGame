@@ -24,7 +24,6 @@ public abstract class Area {
                         break;
                     }
                     else if (input.equals("1")) {
-                        Item.openTheBag();
                         Item.useItem();
                     }
                     else if (input.equals("2"))

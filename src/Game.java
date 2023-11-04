@@ -4,14 +4,20 @@ import java.util.Scanner;
 public class Game {
     Scanner scanner = new Scanner(System.in);
     static int playerHealth = 50;
-    Item item = new Item();
-    Jungle jungle = new Jungle();
     public String whereIsPlayerNow = "Crossroad";
 
+    Item item = new Item();
+    Jungle jungle = new Jungle();
 
+    public Game(Item item, Jungle jungle) {
+        this.item = item;
+        this.jungle = jungle;
+    }
+    public Game(){
+
+    }
 
     void gamePlay() {
-        Jungle jungle = new Jungle();
         System.out.print("Welcome in game. Please, enter your name: ");
         String playerName = scanner.nextLine();
         System.out.println();
@@ -35,11 +41,11 @@ public class Game {
             System.out.println("2 - Get a Hint");
             System.out.println("3 - Quit the game");
             input = scanner.nextLine();
-            if (input.equals("0"){
+            if (input.equals("0")){
                 if(whereIsPlayerNow.equals("SecondSouth"))
                     System.out.println("You can't escape. Fight the jaguar!");
                 else{
-                    if(whereIsPlayerNow.equals("Crossroad")
+                    if(whereIsPlayerNow.equals("Crossroad"))
                         jungle.getDirection();
                     else
                         jungle.goCrossRoad();

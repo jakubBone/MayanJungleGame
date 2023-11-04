@@ -8,9 +8,9 @@ public class Item {
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
     public boolean ifBottleIsFilled = false;
-    Game game = new Game;
-
+    Game game = new Game();
     Jungle jungle = new Jungle();
+
 
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
@@ -34,8 +34,6 @@ public class Item {
         return poison + woodSticks;
     }
 
-    void
-    // In progress
     public void useItem() {
         System.out.println("Choose the item:");
         openTheBag();
@@ -44,14 +42,8 @@ public class Item {
         while(true){
         if(input >= 0 && input <= bag.size()) {
             if (input == 0) {
-                if(bag.contains("knife")) {
                     useKnife();
                     break;
-                }
-                else {
-                    useCocoa();
-                    break;
-                }
             } else if (input == 1) {
                 useTequila();
                 break;
@@ -59,8 +51,13 @@ public class Item {
                 useBottle();
                 break;
             } else if (input == 3) {
-                useLighter();
-                break;
+                if(bag.contains("lighter")) {
+                    useLighter();
+                    break;
+                } else {
+                    useCocoa();
+                    break;
+                }
             } else if (input == 4) {
                 useDictionary();
                 break;
@@ -85,11 +82,6 @@ public class Item {
             System.out.println("The end");
             System.exit(0);
         }
-        else if(game.whereIsPlayerNow.equals("East")){
-            System.out.println("You exchanged the knife to Indian hint. In addition, Indian gave you the Holly Cocoa");
-            bag.set(bag.indexOf("knife"), "cocoa");
-            jungle.getIndianHint();
-        }
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
@@ -111,7 +103,7 @@ public class Item {
             game.whereIsPlayerNow = "Crossread";
         } else {
             if (ifBottleIsFilled){
-                Game.playerHealth = 100)
+                Game.playerHealth = 100;
                 System.out.println("You drunk the holy water. Your health inceased to " + Game.playerHealth);
             }
             else
@@ -119,12 +111,14 @@ public class Item {
         }
     }
 
-    public void useLighter(){
+    public void useLighter() {
         if(game.whereIsPlayerNow.equals("East")) {
-            System.out.println("You exchanged the lighter for a hint.");
-            bag.
-        } else
-            System.out.println("The item not useful in this situation. Choose another the item.");
+            System.out.println("You exchanged the knife to Indian hint. In addition, Indian gave you the Holly Cocoa");
+            bag.set(bag.indexOf("lighter"), "cocoa");
+            jungle.getIndianHint();
+        }
+        else
+            System.out.println("The item not useful in this situation. Choose another the item");
     }
 
     public void useDictionary(){

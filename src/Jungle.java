@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Jungle {
-
     public boolean ifNorthExplored = false;
     public boolean ifFirstSouthExplored = false;
     public boolean ifSecondSouthExplored = false;
@@ -13,7 +12,7 @@ public class Jungle {
     Item item = new Item();
     Game game = new Game();
 
-    @Override
+
     public void firstScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
                 "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
@@ -37,13 +36,11 @@ public class Jungle {
         System.out.println("Find something to get stronger");
     }
 
-    @Override
     public void lastScene() {
         System.out.println("You are going straight. Suddenly there is light at the end on th path");
         System.out.println("This is the end of the jungle. You see some buildings. What is this place?");
     }
 
-    @Override
     public void getDirection() {
         String direction;
         while (true) {
@@ -101,19 +98,6 @@ public class Jungle {
             System.out.println("Invalid choise. Please try again.");
     }
 
-    /*void goFirstSouth() {
-        game.whereIsPlayerNow = "FirstSouth";
-        System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        System.out.println("Would you like to use the bottle?");
-        System.out.println("0 - Yes");
-        System.out.println("1 - No");
-        String input = scanner.nextLine();
-        if(input.equals("0")) {
-            item.useBottle();
-        } else
-            System.out.println("Remember, you are in Jungle. All items would be useful...");
-        ifFirstSouthExplored = true;
-    }*/
 
     void goFirstSouth() {
         game.whereIsPlayerNow = "FirstSouth";
@@ -127,6 +111,7 @@ public class Jungle {
         System.out.println("You passed the cenote and continued on. And suddenly...");
         System.out.println("Oh shit! It's jaguar! You have to fight with him!");
         fightWithJaguar();
+        System.out.println("------ The end test ------- ");
     }
 
     void fightWithJaguar() {
@@ -139,22 +124,6 @@ public class Jungle {
         } else
             System.out.println("Use the weapon!");
     }
-    /*void goEast() {
-        game.whereIsPlayerNow = "East";
-        System.out.println("You found the Indian Village");
-        System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
-        while (true) {
-            item.openTheBag();
-            int input = scanner.nextInt();
-            if (input == 4) {
-                tradeWithIndianChief();
-                break;
-            } else
-                System.out.println("Invalid choice. Please try arain");
-        }
-        ifEastExplored = true;
-        //game.getMainChoice();
-    }*/
 
     void goEast() {
         game.whereIsPlayerNow = "East";
@@ -189,19 +158,6 @@ public class Jungle {
         ifWestExplored = true;
     }
 
-    /*public void tradeWithIndianChief() {
-        System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
-        while (true) {
-            item.openTheBag();
-            int input = scanner.nextInt();
-            if (input == 3) {
-                getIndianHint();
-                break;
-            } else {
-                System.out.println("Invalid choice. He wants the lighter. Please try again");
-            }
-        }
-    }*/
 
     public void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter - Indian said");
@@ -220,7 +176,6 @@ public class Jungle {
     }
 
 
-    @Override
     public void getHint() {
         if(game.whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("Use knife or toxic spear to kill the jaguar!");

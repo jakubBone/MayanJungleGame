@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Jungle extends Area {
+public class Jungle {
 
     boolean ifNorthExplored = false;
     boolean ifSouthExplored = false;

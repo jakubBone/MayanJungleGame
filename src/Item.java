@@ -32,6 +32,7 @@ public class Item {
         return poison + woodSticks;
     }
 
+    void
     // In progress
     public void useItem() {
         System.out.println("Choose the item:");
@@ -82,17 +83,21 @@ public class Item {
         if(game.whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("You are too drunk to fight with jaguar. He is killing you...");
         else
-            System.out.println("You are drunk. Don't lost your bag!");
+            System.out.println("You are drunk. Don't lost your bag and beware of dangers in the jungle!");
     }
-    public void useBottle(){
-        if(game.whereIsPlayerNow.equals("FirstSouth")) {
-            Game.playerHealth = 100;
+    public void useBottle() {
+        if (game.whereIsPlayerNow.equals("FirstSouth")) {
             ifBootleIsFilled = true;
-            System.out.println("You filled bottle by water. You drunk it and your health increase to " + Game.playerHealth);
-        } else
-            System.out.println("The item not useful in this situation. Choose another the item.");
+            System.out.println("You filled bottle by water. Drink it quickly to increase your health!");
+        } else {
+            if (ifBootleIsFilled){
+                Game.playerHealth = 100)
+                System.out.println("You drunk the holy water. Your health inceased to " + Game.playerHealth);
+            }
+            else
+                System.out.println("The bottle is empty. Find something to drink quickly!");
+        }
     }
-
 
     public void useLighter(){
         if(game.whereIsPlayerNow.equals("East")) {
@@ -110,7 +115,7 @@ public class Item {
 
     public void useToxicSpear(){
         if(game.whereIsPlayerNow.equals("SecondSouth"))
-            System.out.println("You kill the jaguar using the toxic spear");
+            System.out.println("You killed the jaguar using the toxic spear");
         else {
             System.out.println("The item not useful in this situation. Choose another the item.");
         }
@@ -118,15 +123,14 @@ public class Item {
 
     public void preapareToxicSpear() {
         if (game.whereIsPlayerNow.equals("SecondSouth")) {
-            System.out.println("It's to late for preparing the weapon. The Jaguar is killing you");
+            System.out.println("It's to late for preparing the weapon. The Jaguar killed you");
             System.out.println("The End");
             System.exit(0);
         } else {
-            System.out.println("Let's use the poison and wood sticks to prepare a weapon");
             addItem("toxic spear");
             removeItem("poison");
             removeItem("wood sticks");
-            System.out.println("You have prepared a dangerous toxic.");
+            System.out.println("You have prepared a dangerous toxic spear using the poison and wood sticks");
         }
     }
 

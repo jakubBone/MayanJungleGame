@@ -7,8 +7,10 @@ public class Item {
     Scanner scanner = new Scanner(System.in);
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
-    public boolean ifBootleIsFilled = false;
+    public boolean ifBottleIsFilled = false;
     Game game = new Game;
+
+    Jungle jungle = new Jungle();
 
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
@@ -87,10 +89,11 @@ public class Item {
     }
     public void useBottle() {
         if (game.whereIsPlayerNow.equals("FirstSouth")) {
-            ifBootleIsFilled = true;
+            ifBottleIsFilled = true;
             System.out.println("You filled bottle by water. Drink it quickly to increase your health!");
+            game.whereIsPlayerNow = "Crossread";
         } else {
-            if (ifBootleIsFilled){
+            if (ifBottleIsFilled){
                 Game.playerHealth = 100)
                 System.out.println("You drunk the holy water. Your health inceased to " + Game.playerHealth);
             }
@@ -107,8 +110,12 @@ public class Item {
     }
 
     public void useDictionary(){
-        if(game.whereIsPlayerNow.equals("East"))
+        if(game.whereIsPlayerNow.equals("East")) {
             System.out.println("Let's try to translate the Nahuatl to English");
+            jungle.tradeWithIndianChief();
+            jungle.ifIndianTranslated = true;
+            jungle.ifEastExplored = true;
+        }
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }

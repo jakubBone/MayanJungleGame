@@ -8,6 +8,8 @@ public class Game {
     Jungle jungle = new Jungle();
     public String whereIsPlayerNow = "Crossroad";
 
+
+
     void gamePlay() {
         Jungle jungle = new Jungle();
         System.out.print("Welcome in game. Please, enter your name: ");
@@ -16,49 +18,32 @@ public class Game {
         System.out.println("Hello " + playerName + "Let's begin the game!");
         jungle.firstScene();
         jungle.firstBagCheckingScene();
-        while(true) {
+        while (true) {
             getMainChoice();
         }
     }
-
-    /*public void getMainChoice() {
-        String input;
-        while (true) {
-            System.out.println("What you want to do?");
-            System.out.println("0 - Choose direction");
-            System.out.println("1 - Open the bag");
-            System.out.println("2 - Get a Hint");
-            System.out.println("3 - Quit the game");
-            input = scanner.nextLine();
-            if (input.equals("0")) {
-                jungle.getDirection();
-                break;
-            }
-            else if (input.equals("1")) {
-                item.useItem();
-            }
-            else if (input.equals("2"))
-                jungle.getHint();
-            else if (input.equals("3"))
-                System.exit(0);
-            else
-                System.out.println("Invalid choice buddy. Please again");
-        }
-    }*/
 
     public void getMainChoice() {
         String input;
         while (true) {
             System.out.println("What you want to do?");
-            if()
-            System.out.println("0 - Choose direction");
+            if(whereIsPlayerNow.equals("Crossroad"))
+                System.out.println("0 - Choose direction");
+            else
+                System.out.println("0 - Turn back to Crossroad");
             System.out.println("1 - Open the bag");
             System.out.println("2 - Get a Hint");
             System.out.println("3 - Quit the game");
             input = scanner.nextLine();
-            if (input.equals("0")) {
-                jungle.getDirection();
-                break;
+            if (input.equals("0"){
+                if(whereIsPlayerNow.equals("SecondSouth"))
+                    System.out.println("You can't escape. Fight the jaguar!");
+                else{
+                    if(whereIsPlayerNow.equals("Crossroad")
+                        jungle.getDirection();
+                    else
+                        jungle.goCrossRoad();
+                }
             }
             else if (input.equals("1")) {
                 item.useItem();

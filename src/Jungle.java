@@ -79,8 +79,12 @@ public class Jungle extends Area {
             }
         }
     }
+
+    void goCrossRoad(){
+        game.whereIsPlayerNow = "CrossRoad"
+    }
     void goNorth() {
-        item.whereIsPlayerNow = "North";
+        game.whereIsPlayerNow = "North";
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
         System.out.println("They would be useful. Do you want to take them?");
         System.out.println("0 - Yes");
@@ -93,11 +97,11 @@ public class Jungle extends Area {
         } else {
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         }
-        game.getMainChoice();
+        //game.getMainChoice();
     }
 
     void goFirstSouth() {
-        item.whereIsPlayerNow = "FirstSouth";
+        game.whereIsPlayerNow = "FirstSouth";
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         System.out.println("Would you like to use the bottle?");
         System.out.println("0 - Yes");
@@ -108,12 +112,12 @@ public class Jungle extends Area {
         } else
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         ifFirstSouthExplored = true;
-        game.getMainChoice();
+        //game.getMainChoice();
 
     }
 
     void goSecondSouth() {
-        item.whereIsPlayerNow = "SecondSouth";
+        game.whereIsPlayerNow = "SecondSouth";
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         fightWithJaguar();
     }
@@ -133,7 +137,7 @@ public class Jungle extends Area {
     }
 
     void goEast() {
-        item.whereIsPlayerNow = "East";
+        game.whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
         System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
         while (true) {
@@ -146,12 +150,12 @@ public class Jungle extends Area {
                 System.out.println("Invalid choice. Please try arain");
         }
         ifEastExplored = true;
-        game.getMainChoice();
+        //game.getMainChoice();
     }
 
 
     void goWest() {
-        item.whereIsPlayerNow = "West";
+        game.whereIsPlayerNow = "West";
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
         System.out.println();

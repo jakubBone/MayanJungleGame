@@ -8,7 +8,8 @@ public class Item {
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
     public boolean ifBootleIsFilled = false;
-    public String whereIsPlayerNow = "Crossroad";
+    Game game = new Game;
+
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
 
@@ -28,7 +29,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return additionalItem1 + additionalItem2;
+        return poison + woodSticks;
     }
 
     // In progress
@@ -70,7 +71,7 @@ public class Item {
     }
 
     public void useKnife(){
-        if(whereIsPlayerNow.equals("SecondSouth")) {
+        if(game.whereIsPlayerNow.equals("SecondSouth")) {
             System.out.println("The knife is to small to kill jaguar. Change the weapon!");
             System.out.println("The end");
             System.exit(0);
@@ -78,13 +79,13 @@ public class Item {
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
     public void useTequila(){
-        if(whereIsPlayerNow.equals("SecondSouth"))
+        if(game.whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("You are too drunk to fight with jaguar. He is killing you...");
         else
             System.out.println("You are drunk. Don't lost your bag!");
     }
     public void useBottle(){
-        if(whereIsPlayerNow.equals("FirstSouth")) {
+        if(game.whereIsPlayerNow.equals("FirstSouth")) {
             Game.playerHealth = 100;
             ifBootleIsFilled = true;
             System.out.println("You filled bottle by water. You drunk it and your health increase to " + Game.playerHealth);
@@ -94,21 +95,21 @@ public class Item {
 
 
     public void useLighter(){
-        if(whereIsPlayerNow.equals("East")) {
+        if(game.whereIsPlayerNow.equals("East")) {
             System.out.println("You exchanged the lighter for a hint.");
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
 
     public void useDictionary(){
-        if(whereIsPlayerNow.equals("East"))
+        if(game.whereIsPlayerNow.equals("East"))
             System.out.println("Let's try to translate the Nahuatl to English");
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
 
     public void useToxicSpear(){
-        if(whereIsPlayerNow.equals("SecondSouth"))
+        if(game.whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("You kill the jaguar using the toxic spear");
         else {
             System.out.println("The item not useful in this situation. Choose another the item.");
@@ -116,7 +117,7 @@ public class Item {
     }
 
     public void preapareToxicSpear() {
-        if (whereIsPlayerNow.equals("SecondSouth")) {
+        if (game.whereIsPlayerNow.equals("SecondSouth")) {
             System.out.println("It's to late for preparing the weapon. The Jaguar is killing you");
             System.out.println("The End");
             System.exit(0);

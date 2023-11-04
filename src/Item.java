@@ -5,22 +5,21 @@ import java.util.Scanner;
 
 public class Item {
     Scanner scanner = new Scanner(System.in);
-    String additionalItem1 = "POISON";
-    String additionalItem2 = "WOOD STICKS";
-
-    public static boolean ifBootleIsFilled = false;
-    public static String whereIsPlayerNow = "Crossroad";
+    String poison = "POISON";
+    String woodSticks = "WOOD STICKS";
+    public boolean ifBootleIsFilled = false;
+    public String whereIsPlayerNow = "Crossroad";
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
 
-    public static void openTheBag() {
+    public void openTheBag() {
         System.out.println("Your items: ");
         for (int i = 0; i < Item.bag.size(); i++) {
             System.out.println(i + " - " + Item.bag.get(i));
         }
     }
 
-    public static void putItems(String... items) {
+    public void putItems(String... items) {
         bag.addAll(Arrays.asList(items));
         for (String item : items) {
             System.out.println("The item " + item + " added to the bag.");
@@ -33,7 +32,7 @@ public class Item {
     }
 
     // In progress
-    public static void useItem() {
+    public void useItem() {
         System.out.println("Choose the item:");
         openTheBag();
         Scanner scanner = new Scanner(System.in);
@@ -70,7 +69,7 @@ public class Item {
         }
     }
 
-    public static void useKnife(){
+    public void useKnife(){
         if(whereIsPlayerNow.equals("SecondSouth")) {
             System.out.println("The knife is to small to kill jaguar. Change the weapon!");
             System.out.println("The end");
@@ -78,13 +77,13 @@ public class Item {
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
-    public  static void useTequila(){
+    public void useTequila(){
         if(whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("You are too drunk to fight with jaguar. He is killing you...");
         else
             System.out.println("You are drunk. Don't lost your bag!");
     }
-    public static void useBottle(){
+    public void useBottle(){
         if(whereIsPlayerNow.equals("FirstSouth")) {
             Game.playerHealth = 100;
             ifBootleIsFilled = true;
@@ -94,21 +93,21 @@ public class Item {
     }
 
 
-    public static void  useLighter(){
+    public void useLighter(){
         if(whereIsPlayerNow.equals("East")) {
             System.out.println("You exchanged the lighter for a hint.");
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
 
-    public static void useDictionary(){
+    public void useDictionary(){
         if(whereIsPlayerNow.equals("East"))
             System.out.println("Let's try to translate the Nahuatl to English");
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
 
-    public static void useToxicSpear(){
+    public void useToxicSpear(){
         if(whereIsPlayerNow.equals("SecondSouth"))
             System.out.println("You kill the jaguar using the toxic spear");
         else {
@@ -116,7 +115,7 @@ public class Item {
         }
     }
 
-    public static void preapareToxicSpear() {
+    public void preapareToxicSpear() {
         if (whereIsPlayerNow.equals("SecondSouth")) {
             System.out.println("It's to late for preparing the weapon. The Jaguar is killing you");
             System.out.println("The End");
@@ -130,11 +129,11 @@ public class Item {
         }
     }
 
-    public static void addItem(String item) {
+    public void addItem(String item) {
         bag.add(item);
     }
 
-    public static void removeItem(String item) {
+    public void removeItem(String item) {
         bag.remove(item);
     }
 

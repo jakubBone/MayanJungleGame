@@ -11,6 +11,10 @@ public class Jungle extends Area {
 
     Scanner scanner = new Scanner(System.in);
 
+    Item item = new Item();
+
+    Game game = new Game();
+
     @Override
     public void firstScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
@@ -24,7 +28,7 @@ public class Jungle extends Area {
     public void firstBagCheckingScene() {
         System.out.println("You have your bag. Let's check the content");
         System.out.println("Your bag: \n");
-        Item.openTheBag();
+        item.openTheBag();
         System.out.println();
         System.out.println("You are going through the jungle. Suddenly, you find a crossroads with 4 directions -" +
                 " North, South, East and West");
@@ -76,40 +80,40 @@ public class Jungle extends Area {
         }
     }
     void goNorth() {
-        Item.whereIsPlayerNow = "North";
+        item.whereIsPlayerNow = "North";
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
         System.out.println("They would be useful. Do you want to take them?");
         System.out.println("0 - Yes");
         System.out.println("1 - No");
         String input = scanner.nextLine();
         if(input.equals("0")) {
-            Item.putItems("poison", "wood sticks");
+            item.putItems("poison", "wood sticks");
             System.out.println("Now you can use them to prepare a new weapon - toxic spear ");
             ifNorthExplored = true;
         } else {
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         }
-        getMainChoice();
+        game.getMainChoice();
     }
 
     void goFirstSouth() {
-        Item.whereIsPlayerNow = "FirstSouth";
+        item.whereIsPlayerNow = "FirstSouth";
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         System.out.println("Would you like to use the bottle?");
         System.out.println("0 - Yes");
         System.out.println("1 - No");
         String input = scanner.nextLine();
         if(input.equals("0")) {
-            Item.useBottle();
+            item.useBottle();
         } else
             System.out.println("Remember, you are in Jungle. All items would be useful...");
         ifFirstSouthExplored = true;
-        getMainChoice();
+        game.getMainChoice();
 
     }
 
     void goSecondSouth() {
-        Item.whereIsPlayerNow = "SecondSouth";
+        item.whereIsPlayerNow = "SecondSouth";
         System.out.println("Oh shit! The jaguar! You have to fight with him!");
         fightWithJaguar();
     }
@@ -123,17 +127,17 @@ public class Jungle extends Area {
             System.exit(0);
         } else {
             System.out.println("Use the weapon!");
-            Item.openTheBag();
-            Item.useItem();
+            item.openTheBag();
+            item.useItem();
         }
     }
 
     void goEast() {
-        Item.whereIsPlayerNow = "East";
+        item.whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
         System.out.println("Ask the Indian Chief for it the next direction. Use the dictionary");
         while (true) {
-            Item.openTheBag();
+            item.openTheBag();
             int input = scanner.nextInt();
             if (input == 4) {
                 tradeWithIndianChief();
@@ -142,12 +146,12 @@ public class Jungle extends Area {
                 System.out.println("Invalid choice. Please try arain");
         }
         ifEastExplored = true;
-        getMainChoice();
+        game.getMainChoice();
     }
 
 
     void goWest() {
-        Item.whereIsPlayerNow = "West";
+        item.whereIsPlayerNow = "West";
         System.out.println("You find a huge tree with strange sign on it. " +
                 "As if someone made it using knife on purpose");
         System.out.println();
@@ -164,7 +168,7 @@ public class Jungle extends Area {
     public void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter");
         while (true) {
-            Item.openTheBag();
+            item.openTheBag();
             int input = scanner.nextInt();
             if (input == 3) {
                 getIndianHint();

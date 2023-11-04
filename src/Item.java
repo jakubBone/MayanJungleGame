@@ -44,8 +44,14 @@ public class Item {
         while(true){
         if(input >= 0 && input <= bag.size()) {
             if (input == 0) {
-                useKnife();
-                break;
+                if(bag.contains("knife")) {
+                    useKnife();
+                    break;
+                }
+                else {
+                    useCocoa();
+                    break;
+                }
             } else if (input == 1) {
                 useTequila();
                 break;
@@ -78,8 +84,19 @@ public class Item {
             System.out.println("The knife is to small to kill jaguar. Change the weapon!");
             System.out.println("The end");
             System.exit(0);
-        } else
+        }
+        else if(game.whereIsPlayerNow.equals("East")){
+            System.out.println("You exchanged the knife to Indian hint. In addition, Indian gave you the Holly Cocoa");
+            bag.set(bag.indexOf("knife"), "cocoa");
+            jungle.getIndianHint();
+        }
+        else
             System.out.println("The item not useful in this situation. Choose another the item.");
+    }
+
+    public void useCocoa(){
+        Game.playerHealth = 100;
+        System.out.println("You eat cocoa grains. Your health increased to " + Game.playerHealth);
     }
     public void useTequila(){
         if(game.whereIsPlayerNow.equals("SecondSouth"))
@@ -105,6 +122,7 @@ public class Item {
     public void useLighter(){
         if(game.whereIsPlayerNow.equals("East")) {
             System.out.println("You exchanged the lighter for a hint.");
+            bag.
         } else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }

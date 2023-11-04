@@ -205,11 +205,18 @@ public class Jungle {
 
     public void tradeWithIndianChief() {
         System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter - Indian said");
-            if (Item.bag.contains("knife"))
-                getIndianHint();
-            else {
-                System.out.println("Invalid choice. He wants the lighter. Please try again");
-            }
+        System.out.println("Would you like to exchange the lighter to a hint?");
+        System.out.println("0 - Yes");
+        System.out.println("1 - No");
+        String input = scanner.nextLine();
+        while (Item.bag.contains("knife")) {
+            if (input.equals("0"))
+                item.useItem();
+            else if (input.equals("1"))
+                System.out.println("You need to get the hints from Indian. Exchange the knife");
+            else
+                System.out.println("Invalid choice. Please try again.");
+        }
     }
 
 

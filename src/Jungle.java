@@ -12,7 +12,14 @@ public class Jungle {
     Item item = new Item();
     Game game = new Game();
 
+    public Jungle(Item item, Game game) {
+        this.item = item;
+        this.game = game;
+    }
 
+    public Jungle(){
+
+    }
     public void firstScene() {
         System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
                 "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
@@ -24,7 +31,6 @@ public class Jungle {
 
     public void firstBagCheckingScene() {
         System.out.println("You have your bag. Let's check the content");
-        System.out.println("Your bag: \n");
         item.openTheBag();
         System.out.println();
         System.out.println("You are going through the jungle. Suddenly, you find a Crossroads with 4 directions -" +
@@ -134,10 +140,13 @@ public class Jungle {
         System.out.println("1 - No");
         String input = scanner.nextLine();
         while (!ifIndianTranslated) {
-            if (input.equals("0"))
+            if (input.equals("0")) {
                 item.useItem();
-            else if (input.equals("1"))
+            }
+            else if (input.equals("1")) {
                 System.out.println("You need to get the hints from Indian. It would be good to use dictionary.");
+                break;
+            }
             else
                 System.out.println("Invalid choice. Please try again.");
         }

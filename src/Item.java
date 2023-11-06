@@ -101,17 +101,17 @@ public class Item {
     }
     public void useBottle() {
         if (Jungle.whereIsPlayerNow.equals("FirstSouth")) {
-            System.out.println("You filled bottle by water. Drink it quickly to increase your health!");
+            System.out.println("You filled bottle by water. You can Drink it later to increase your health!");
             ifBottleIsFilled = true;
         } else {
-            if (ifBottleIsFilled){
+            if (ifBottleIsFilled) {
                 Game.playerHealth = 100;
-                System.out.println("You drunk the holy water. Your health inceased to " + Game.playerHealth);
-            }
-            else
+                System.out.println("You drunk the holy water. Your health has inceased to " + Game.playerHealth);
+            } else
                 System.out.println("The bottle is empty. Find something to drink quickly!");
         }
     }
+
 
     public void useLighter() {
         if(Jungle.whereIsPlayerNow.equals("East")) {

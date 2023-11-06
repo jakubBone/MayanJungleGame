@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Item {
-    Scanner scanner = new Scanner(System.in);
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
     public boolean ifBottleIsFilled = false;

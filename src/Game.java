@@ -13,9 +13,6 @@ public class Game {
         this.item = item;
         this.jungle = jungle;
     }
-    public Game(){
-
-    }
 
     void gamePlay() {
         System.out.print("Welcome in game. Please, enter your name: ");

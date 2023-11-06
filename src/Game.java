@@ -13,11 +13,9 @@ public class Game {
         this.item = item;
         this.jungle = jungle;
     }
-
     public Game(){
 
     }
-
     void gamePlay() {
         System.out.print("Welcome in game. Please, enter your name: ");
         String playerName = scanner.nextLine();
@@ -35,20 +33,19 @@ public class Game {
         while (true) {
             System.out.println("What do you want to do?");
 
-            if (whereIsPlayerNow.equals("Crossroad"))
+            if (Jungle.whereIsPlayerNow.equals("Crossroad"))
                 System.out.println("0 - Choose direction");
             else
                 System.out.println("0 - Turn back to Crossroad");
-
             System.out.println("1 - Open the bag");
             System.out.println("2 - Get a Hint");
             System.out.println("3 - Quit the game");
             input = scanner.nextLine();
             if (input.equals("0")) {
-                if (whereIsPlayerNow.equals("SecondSouth"))
+                if (Jungle.whereIsPlayerNow.equals("SecondSouth"))
                     System.out.println("You can't escape. Fight the jaguar!");
                 else {
-                    if (whereIsPlayerNow.equals("Crossroad"))
+                    if (Jungle.whereIsPlayerNow.equals("Crossroad"))
                         jungle.getDirection();
                     else
                         jungle.goCrossRoad();

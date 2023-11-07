@@ -2,12 +2,11 @@ import java.util.Scanner;
 
 public class Jungle {
     public boolean ifNorthExplored = false;
-    public boolean ifFirstSouthExplored = false;
-    public boolean ifSecondSouthExplored = false;
+    public boolean ifSouthExplored = false;
+    public boolean ifSouthAgainExplored = false;
     public boolean ifEastExplored = false;
     public boolean ifWestExplored = false;
-    public boolean ifIndianTranslated = false;
-
+    public static boolean ifIndianTranslated = false;
     public static String whereIsPlayerNow = "Crossroad";
 
     Scanner scanner = new Scanner(System.in);
@@ -32,7 +31,7 @@ public class Jungle {
         System.out.println();
         System.out.println("-Let's try to quit this place - you think");
         System.out.println();
-        System.out.println("|| Your healh level is " + Game.playerHealth + " ||");
+        System.out.println("|| Your health leveL: " + Game.playerHealth + " ||");
         System.out.println("Find something to get stronger");
     }
 
@@ -45,7 +44,10 @@ public class Jungle {
         String direction;
         while (true) {
             System.out.println("N - Go north");
-            System.out.println("S - Go south");
+            if(!ifSouthExplored)
+                System.out.println("S - Go south");
+            else
+                System.out.println("S - Go south again");
             System.out.println("E - Go east");
             System.out.println("W - Go west");
 
@@ -54,13 +56,13 @@ public class Jungle {
             if (direction.equals("N") && !ifNorthExplored) {
                 goNorth();
                 break;
-            } else if (direction.equals("S") && (!ifFirstSouthExplored || !ifSecondSouthExplored)) {
-                if (!ifFirstSouthExplored) {
+            } else if (direction.equals("S") && (!ifSouthExplored || !ifSouthAgainExplored)) {
+                if (!ifSouthExplored) {
                     goSouth();
-                    ifFirstSouthExplored = true;
+                    ifSouthExplored = true;
                 } else {
                     goSouthAgain();
-                    ifSecondSouthExplored = true;
+                    ifSouthAgainExplored = true;
                 }
                 break;
             } else if (direction.equals("E") && !ifEastExplored) {
@@ -73,13 +75,11 @@ public class Jungle {
                 System.out.println("Invalid choice or you have been here before. Please try again or change direction.");
         }
     }
-
     void goCrossRoad(){
         System.out.println("You turned back to the CrossRoad");
         Jungle.whereIsPlayerNow = "Crossroad";
 
     }
-
     void goNorth() {
         whereIsPlayerNow = "North";
         System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
@@ -97,9 +97,9 @@ public class Jungle {
 
     void goSouth() {
         whereIsPlayerNow = "South";
-        System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
-        System.out.println("You should fill the bottle");
-        ifFirstSouthExplored = true;
+        System.out.println("In front of you appears the lake with Indian Holly Water");
+        System.out.println("You should fill the bottle with Holly Water");
+        ifSouthExplored = true;
     }
 
     void goSouthAgain() {
@@ -111,61 +111,61 @@ public class Jungle {
     }
 
     void fightWithJaguar() {
-        if (Game.playerHealth == 50) {
-            System.out.println("You health is ||" + Game.playerHealth + "|| It's too little");
-            System.out.println("You didn't drink the holy water from Cenote before. It could cure you!");
-            System.out.println("The jaguar killed you...");
-            System.out.println("The End");
-            System.exit(0);
-        } else
-            System.out.println("Use the weapon!");
-    }
-
+        while(Game.playerHealth == 0 || Game.jaguarHealth ==0) {
+            System.out.println("|| Your health: " + Game.playerHealth + " ||");
+            System.out.println("|| Jaguar health: " + Game.jaguarHealth + " ||");
+            if (Game.playerHealth == 50) {
+                System.out.println("You health level is too little...");
+                System.out.println("You didn't drunk the Holy Water from lake. It could cure you! So...");
+                System.out.println("...the jaguar killed you...");
+                System.out.println("The End");
+                System.exit(0);
+            } else
+                System.out.println("Use the weapon!");
+            }
+            if(Game.playerHealth == 0){
+                System.out.println("The jaguar killed you...");
+                System.out.println("The end");
+                System.exit(0);
+            }
+            else {
+                System.out.println("You kill the jaguar!");
+                System.out.println();
+                System.exit(0);
+            }
+        }
     void goEast() {
         whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
-        System.out.println("Ask the Indian Chief for it the next direction. You need to use the dictionary");
-        System.out.println("Would you like to translate the Indian language?");
+        System.out.println("Would you like to ask the Indian Chief for a appropriate way?");
         System.out.println("0 - Yes");
         System.out.println("1 - No");
         String input = scanner.nextLine();
-        while (Item.bag.contains("lighter")) {
-            if (input.equals("0")) {
-                item.useItem();
-                if (!ifIndianTranslated) {
-                    tradeWithIndianChief();
-                    ifIndianTranslated = true;
-                } else {
-                    getIndianHint();
-                    ifEastExplored = true;
-                    break;
+        while (true) {
+            if(input.equals("0")) {
+                while (Item.bag.contains("lighter")) {
+                    if (!ifIndianTranslated) {
+                        System.out.println("The Indian talk you in Nahualt language");
+                        System.out.println("Open the bag and use the dictionary");
+                        item.useItem();
+                    } else {
+                        System.out.println("Exchange the lighter to a hint");
+                        item.useItem();
+                    }
                 }
-            }
-            else if (input.equals("1")) {
-                System.out.println("You need to get the hints from Indian. It would be good to use dictionary.");
+                ifEastExplored = true;
                 break;
             }
-            else
+            else if (input.equals("1")) {
+                System.out.println("No? You need to get the hints from Indian. It would be good to ask him for way.");
+                break;
+            } else
                 System.out.println("Invalid choice. Please try again.");
         }
     }
 
-    public void tradeWithIndianChief() {
-        System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter - Indian said");
-        System.out.println("Would you like to exchange the lighter to a hint?");
-        System.out.println("0 - Yes");
-        System.out.println("1 - No");
-        String input = scanner.nextLine();
-        while (Item.bag.contains("lighter")) {
-            if (input.equals("0")) {
-                item.useItem();
-            }
-            else if (input.equals("1"))
-                System.out.println("You need to get the hints from Indian. Exchange the knife");
-            else
-                System.out.println("Invalid choice. Please try again.");
-        }
-    }
+
+
 
     void goWest() {
         whereIsPlayerNow = "West";

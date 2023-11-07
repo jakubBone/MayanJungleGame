@@ -75,16 +75,18 @@ public class Item {
 
     public void useKnife(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-            System.out.println("The knife is to small to kill jaguar. Change the weapon!");
-            System.out.println("The end");
-            System.exit(0);
+            System.out.println("The knife is to small to kill jaguar");
+            System.out.println("You cut him, but he also bitten you!\"");
+            Game.playerHealth -=25;
+            Game.jaguarHealth -=10;
+            System.out.println("Your health decrease to : " + Game.playerHealth);
         }
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
     }
 
     public void useCocoa(){
-        Game.playerHealth = 100;
+        Game.playerHealth += 20;
         System.out.println("You eat cocoa grains. Your health increased to " + Game.playerHealth);
     }
     public void useTequila() {
@@ -105,7 +107,7 @@ public class Item {
             ifBottleIsFilled = true;
         } else {
             if (ifBottleIsFilled) {
-                Game.playerHealth = 100;
+                Game.playerHealth += 50;
                 System.out.println("You drunk the holy water. Your health has inceased to " + Game.playerHealth);
             } else
                 System.out.println("The bottle is empty. Find something to drink quickly!");
@@ -114,9 +116,9 @@ public class Item {
 
 
     public void useLighter() {
-        if(Jungle.whereIsPlayerNow.equals("East")) {
+        if(Jungle.whereIsPlayerNow.equals("East") && Jungle.ifIndianTranslated) {
             Jungle.getIndianHint();
-            System.out.println("You exchanged the knife to Indian hint. In addition, Indian gave you the Holly Cocoa");
+            System.out.println("The Indian also gave you the Cocoa to eat");
             bag.set(bag.indexOf("lighter"), "cocoa");
         }
         else
@@ -124,8 +126,9 @@ public class Item {
     }
 
     public void useDictionary(){
-        if(Jungle.whereIsPlayerNow.equals("East")) {
-            System.out.println("Let's try to translate the Nahuatl to English");
+        if(Jungle.whereIsPlayerNow.equals("East") && !Jungle.ifIndianTranslated) {
+            System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter - Indian said");
+            Jungle.ifIndianTranslated = true;
         }
         else
             System.out.println("The item not useful in this situation. Choose another the item.");

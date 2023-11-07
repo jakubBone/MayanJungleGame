@@ -48,46 +48,53 @@ public class Jungle {
                 System.out.println("Invalid choice or you have been here before. Please try again or change direction.");
         }
     }
-    void goCrossRoad(){
-        System.out.println("You turned back to the CrossRoad");
+    void goCrossroad(){
+        System.out.println("You turned back to the Crossroad");
         Jungle.whereIsPlayerNow = "Crossroad";
 
     }
     void goNorth() {
         whereIsPlayerNow = "North";
-        System.out.println("On your way you find a flower with intense colors and iridescent petals that captures your attention");
+        System.out.println("On your way you find a flower with intense colors and wood sticks");
         System.out.println("They would be useful. Do you want to take them?");
         System.out.println("0 - Yes");
         System.out.println("1 - No");
-        String input = scanner.nextLine();
-        if(input.equals("0")) {
-            item.putItems("poison", "wood sticks");
-            System.out.println("Now you can use them to prepare a new weapon - toxic spear ");
-            ifNorthExplored = true;
-        } else if(input.equals("1"))
-            System.out.println("Remember, you are in Jungle. All items would be useful...");
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.equals("0")) {
+                item.putItems("poison", "wood sticks");
+                System.out.println();
+                System.out.println("Now you can use them to prepare a new weapon - toxic spear \n ");
+                ifNorthExplored = true;
+                break;
+            } else if (input.equals("1")) {
+                System.out.println("Remember, you are in Jungle. All items would be useful...");
+                break;
+            }
+            else
+                System.out.println("Invalid choice. Please try again.");
+        }
     }
 
     void goSouth() {
         whereIsPlayerNow = "South";
-        System.out.println("In front of you appears the lake with Indian Holly Water");
+        System.out.println("In front of you appears the lake with Indian Holly Water ");
         System.out.println("You should fill the bottle with Holly Water");
         ifSouthExplored = true;
     }
 
     void goSouthAgain() {
         whereIsPlayerNow = "SouthAgain";
-        System.out.println("You passed the Cenote and continued on. And suddenly...");
-        System.out.println("Oh shit! It's jaguar! You have to fight with him!");
+        System.out.println("You passed the lake with Holly Water and continued on. And suddenly... \n");
+        System.out.println("Oh shit! It's jaguar! You have to fight with him! \n");
             fightWithJaguar();
     }
 
     void fightWithJaguar() {
             if (Game.playerHealth == 50) {
-                System.out.println("You health level is too little...");
+                System.out.println("You health level is too little...\n");
                 System.out.println("You didn't drunk the Holy Water from lake. It could cure you! So...");
-                System.out.println("...the jaguar killed you...");
-                System.out.println("The End");
+                System.out.println("...the jaguar killed you...\n");
                 System.exit(0);
             } else {
                 while (Game.jaguarHealth > 0) {
@@ -104,24 +111,25 @@ public class Jungle {
         System.out.println("Would you like to ask the Indian Chief for a appropriate way?");
         System.out.println("0 - Yes");
         System.out.println("1 - No");
-        String input = scanner.nextLine();
         while (true) {
+            String input = scanner.nextLine();
             if(input.equals("0")) {
                 while (Item.bag.contains("lighter")) {
                     if (!ifIndianTranslated) {
-                        System.out.println("The Indian talk you in Nahualt language");
-                        System.out.println("Open the bag and use the dictionary");
+                        System.out.println("The Indian talk to you in Mayan language");
+                        System.out.println("Open the bag and use the dictionary \n");
                         item.useItem();
                     } else {
-                        System.out.println("Exchange the lighter to a hint");
+                        System.out.println("Exchange the lighter to a hint \n");
                         item.useItem();
                     }
                 }
                 ifEastExplored = true;
                 break;
             }
+
             else if (input.equals("1")) {
-                System.out.println("No? You need to get the hints from Indian. It would be good to ask him for way.");
+                System.out.println("No? You need to get the hints from Indian. It would be good to ask him for way.\n");
                 break;
             } else
                 System.out.println("Invalid choice. Please try again.");
@@ -130,16 +138,15 @@ public class Jungle {
 
     void goWest() {
         whereIsPlayerNow = "West";
-        System.out.println("You find a huge tree with strange sign on it. " +
-                "As if someone made it using knife on purpose");
+        System.out.println("You find a huge tree with a strange sign on it.");
         System.out.println();
         System.out.println(" #######");
         System.out.println("#      ###########");
         System.out.println("        #       #");
         System.out.println("         #######");
         System.out.println();
-        System.out.println("- That is this is the Big Dipper constellation! - you think");
-        System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future");
+        System.out.println("- This is the Big Dipper constellation! - you think");
+        System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future... \n");
         ifWestExplored = true;
     }
 
@@ -157,10 +164,12 @@ public class Jungle {
     }
 
     public static void getIndianHint() {
-        System.out.println("- Dear White Man, these are the hints: \n");
-            System.out.println("1st hint: Go North to find a sign");
-            System.out.println("2nd hint: Go West to heal you");
-            System.out.println("3rd hint: Go South and continue straight");
+        System.out.println("*****************************************");
+        System.out.println("- Dear White Man, these are the hints: ");
+        System.out.println("1st hint: Go North to find a sign");
+        System.out.println("2nd hint: Go West to heal you");
+        System.out.println("3rd hint: Go South and continue straight ");
+        System.out.println("***************************************** \n");
     }
 }
 

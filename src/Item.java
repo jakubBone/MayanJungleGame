@@ -1,19 +1,18 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Item {
+
+    Scanner scanner = new Scanner(System.in);
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
     public boolean ifBottleIsFilled = false;
     public boolean ifTequilaDrank = false;
 
+
     public static List<String> bag = new ArrayList<>(Arrays.asList
             ("knife", "tequila", "bottle", "lighter", "dictionary"));
 
     public void openTheBag() {
-        System.out.println("Your items: ");
         for (int i = 0; i < Item.bag.size(); i++) {
             System.out.println(i + " - " + Item.bag.get(i));
         }
@@ -22,8 +21,9 @@ public class Item {
     public void putItems(String... items) {
         bag.addAll(Arrays.asList(items));
         for (String item : items) {
-            System.out.println("The item " + item + " added to the bag.");
+            System.out.println("You put" + item + " to your bag");
         }
+
     }
 
     @Override
@@ -32,85 +32,95 @@ public class Item {
     }
 
     public void useItem() {
-        System.out.println("Choose the item:");
+        System.out.println("-----------------------");
+        System.out.println("Use the item:");
         openTheBag();
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        while (true) {
-            if (input >= 0 && input <= bag.size()) {
-                if (input == 0) {
-                    useKnife();
-                    break;
-                } else if (input == 1) {
-                    useTequila();
-                    break;
-                } else if (input == 2) {
-                    useBottle();
-                    break;
-                } else if (input == 3) {
-                    if (bag.contains("lighter")) {
-                        useLighter();
-                        break;
-                    } else {
-                        useCocoa();
-                        break;
+        System.out.println("-----------------------");
+        boolean validInput = false;
+        do {
+            try {
+                int input = scanner.nextInt();
+
+                if (input >= 0 && input < bag.size()) {
+                    switch (input) {
+                        case 0:
+                            useKnife();
+                            break;
+                        case 1:
+                            useTequila();
+                            break;
+                        case 2:
+                            useBottle();
+                            break;
+                        case 3:
+                            if (bag.contains("lighter")) {
+                                useLighter();
+                            } else {
+                                useCocoa();
+                            }
+                            break;
+                        case 4:
+                            useDictionary();
+                            break;
+                        case 5:
+                        case 6:
+                            if (bag.contains("toxic spear")) {
+                                useToxicSpear();
+                            } else {
+                                prepareToxicSpear();
+                            }
+                            break;
                     }
-                } else if (input == 4) {
-                    useDictionary();
-                    break;
-                } else if (input == 5 || input == 6) {
-                    if (bag.contains("toxic spear")) {
-                        useToxicSpear();
-                        break;
-                    } else {
-                        preapareToxicSpear();
-                        break;
-                    }
+                    validInput = true;
                 } else
-                System.out.println("Invalid choice buddy. Please again");
+                    System.out.println("Invalid choice buddy. Please try again");
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice. Please enter a number.");
+                scanner.next();
             }
-        }
+        } while (!validInput);
     }
 
     void healthfightResult(){
         if(Game.playerHealth == 0 || Game.jaguarHealth == 0) {
             if (Game.playerHealth == 0) {
-                System.out.println("The jaguar killed you...");
+                System.out.println("The jaguar killed you...\n");
                 Game.exitGame();
             }
             else {
-                System.out.println("You kill the jaguar!");
+                System.out.println("You kill the jaguar!\n");
             }
         } else
-            System.out.println("Keep fighting!");
+            System.out.println("Keep fighting!\n");
     }
     void printHealthLevels(){
         System.out.println("|| Your health: " + Game.playerHealth + " ||");
-        System.out.println("|| Jaguar health: " + Game.jaguarHealth + " ||");
+        System.out.println("|| Jaguar health: " + Game.jaguarHealth + " || \n");
     }
     public void useKnife(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-            System.out.println("The knife is to small to kill jaguar");
-            System.out.println("You cut him, but he also bitten you!\"");
+            System.out.println("The knife is to small to kill jaguar\n");
+            System.out.println("You cut him, but he also bitten you!\n"");
             Game.playerHealth -=25;
             Game.jaguarHealth -=10;
             printHealthLevels();
             healthfightResult();
         }
         else
-            System.out.println("The item not useful in this situation. Choose another the item.");
+            System.out.println("The item not useful in this situation. Choose another item \n");
     }
 
     public void useCocoa(){
         Game.playerHealth += 20;
-        System.out.println("You eat cocoa grains. Your health increased to " + Game.playerHealth);
+        System.out.println("You eat Cocoa grains. Your health increased to " + Game.playerHealth);
     }
     public void useTequila() {
         if (!ifTequilaDrank) {
             if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-                System.out.println("You are too drunk to fight with jaguar. He is killing you...");
+                System.out.println("You are too drunk to fight with jaguar. He is killing you... \n");
+                Game.exitGame();
             } else {
-                System.out.println("You are drunk. Don't lost your bag and beware of dangers in the jungle!");
+                System.out.println("You are drunk. Don't lost your bag and beware of dangers in the jungle!\n");
                 ifTequilaDrank = true;
             }
         }
@@ -119,50 +129,52 @@ public class Item {
     }
     public void useBottle() {
         if (Jungle.whereIsPlayerNow.equals("South")) {
-            System.out.println("You filled bottle by water. You can Drink it later to increase your health!");
+            System.out.println("You filled bottle by water. You can drink it later to increase your health! \n");
             ifBottleIsFilled = true;
-        } else {
+        }
+        else if(Jungle.whereIsPlayerNow.equals("SouthAgain"))
+            System.out.println("The item not useful in this situation. Choose another item \n");
+        else{
             if (ifBottleIsFilled) {
                 Game.playerHealth += 50;
-                System.out.println("You drunk the holy water. Your health has inceased to " + Game.playerHealth);
+                System.out.println("You drunk the Holy Water. Your health has inceased to " + Game.playerHealth + "\n");
             } else
-                System.out.println("The bottle is empty. Find something to drink quickly!");
+                System.out.println("The bottle is empty. Find something to drink quickly! \n");
         }
     }
-
 
     public void useLighter() {
         if(Jungle.whereIsPlayerNow.equals("East") && Jungle.ifIndianTranslated) {
             Jungle.getIndianHint();
-            System.out.println("The Indian also gave you the Cocoa to eat");
+            System.out.println("The Indian also gave you the Cocoa to eat \n");
             bag.set(bag.indexOf("lighter"), "cocoa");
         }
         else
-            System.out.println("The item not useful in this situation. Choose another the item");
+            System.out.println("The item not useful in this situation. Choose another item \n");
     }
 
     public void useDictionary(){
         if(Jungle.whereIsPlayerNow.equals("East") && !Jungle.ifIndianTranslated) {
-            System.out.println("- Dear Gringo, I'll show you the way, but in exchange for your lighter - Indian said");
+            System.out.println("- Dear Gringo, I'll show you the way, but I want your lighter - Indian said \n");
             Jungle.ifIndianTranslated = true;
         }
         else
-            System.out.println("The item not useful in this situation. Choose another the item.");
+            System.out.println("The item not useful in this situation. Choose another item \n");
     }
 
     public void useToxicSpear(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")){
-            System.out.println("Right choice!");
+            System.out.println("Right choice! \n");
             Game.jaguarHealth = 0;
             printHealthLevels();
             healthfightResult();
         }
         else {
-            System.out.println("The item not useful in this situation. Choose another the item.");
+            System.out.println("The item not useful in this situation. Choose another item \n");
         }
     }
 
-    public void preapareToxicSpear() {
+    public void prepareToxicSpear() {
         if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
             System.out.println("It's to late for preparing the weapon. The Jaguar killed you");
             Game.exitGame();

@@ -80,7 +80,6 @@ public class Item {
             }
             else {
                 System.out.println("You kill the jaguar!");
-                Jungle.ifSouthAgainExplored = true;
             }
         } else
             System.out.println("Keep fighting!");

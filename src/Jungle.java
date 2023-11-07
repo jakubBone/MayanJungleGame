@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Jungle {
     public boolean ifNorthExplored = false;
     public boolean ifSouthExplored = false;
-    public static boolean ifSouthAgainExplored = false;
+    public boolean ifSouthAgainExplored = false;
     public boolean ifEastExplored = false;
     public boolean ifWestExplored = false;
     public static boolean ifIndianTranslated = false;
@@ -80,7 +80,6 @@ public class Jungle {
         System.out.println("You passed the Cenote and continued on. And suddenly...");
         System.out.println("Oh shit! It's jaguar! You have to fight with him!");
             fightWithJaguar();
-
     }
 
     void fightWithJaguar() {
@@ -90,8 +89,13 @@ public class Jungle {
                 System.out.println("...the jaguar killed you...");
                 System.out.println("The End");
                 System.exit(0);
-            } else
-                System.out.println("Use the weapon!");
+            } else {
+                while (Game.jaguarHealth > 0) {
+                    System.out.println("Use the weapon!");
+                    item.useItem();
+                }
+            }
+        ifSouthAgainExplored = true;
     }
 
     void goEast() {

@@ -52,15 +52,13 @@ public class Game {
         System.out.println("Hello " + playerName + "Let's begin the game!");
         firstScene();
         firstBagCheckingScene();
-        while (!Jungle.ifSouthAgainExplored) {
-            getMainChoice();
-        }
+        getMainChoice();
         lastScene();
     }
 
     public void getMainChoice() {
         String input;
-            while (true) {
+            while (!jungle.ifSouthAgainExplored) {
                 System.out.println("What do you want to do?");
 
                 if (Jungle.whereIsPlayerNow.equals("Crossroad"))

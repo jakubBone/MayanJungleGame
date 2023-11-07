@@ -7,7 +7,6 @@ public class Item {
     String poison = "POISON";
     String woodSticks = "WOOD STICKS";
     public boolean ifBottleIsFilled = false;
-
     public boolean ifTequilaDrank = false;
 
     public static List<String> bag = new ArrayList<>(Arrays.asList
@@ -73,13 +72,31 @@ public class Item {
         }
     }
 
+    void healthfightResult(){
+        if(Game.playerHealth == 0 || Game.jaguarHealth == 0) {
+            if (Game.playerHealth == 0) {
+                System.out.println("The jaguar killed you...");
+                Game.exitGame();
+            }
+            else {
+                System.out.println("You kill the jaguar!");
+                Jungle.ifSouthAgainExplored = true;
+            }
+        } else
+            System.out.println("Keep fighting!");
+    }
+    void printHealthLevels(){
+        System.out.println("|| Your health: " + Game.playerHealth + " ||");
+        System.out.println("|| Jaguar health: " + Game.jaguarHealth + " ||");
+    }
     public void useKnife(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")) {
             System.out.println("The knife is to small to kill jaguar");
             System.out.println("You cut him, but he also bitten you!\"");
             Game.playerHealth -=25;
             Game.jaguarHealth -=10;
-            System.out.println("Your health decrease to : " + Game.playerHealth);
+            printHealthLevels();
+            healthfightResult();
         }
         else
             System.out.println("The item not useful in this situation. Choose another the item.");
@@ -135,8 +152,12 @@ public class Item {
     }
 
     public void useToxicSpear(){
-        if(Jungle.whereIsPlayerNow.equals("SouthAgain"))
-            System.out.println("You killed the jaguar using the toxic spear");
+        if(Jungle.whereIsPlayerNow.equals("SouthAgain")){
+            System.out.println("Right choice!");
+            Game.jaguarHealth = 0;
+            printHealthLevels();
+            healthfightResult();
+        }
         else {
             System.out.println("The item not useful in this situation. Choose another the item.");
         }
@@ -145,8 +166,7 @@ public class Item {
     public void preapareToxicSpear() {
         if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
             System.out.println("It's to late for preparing the weapon. The Jaguar killed you");
-            System.out.println("The End");
-            System.exit(0);
+            Game.exitGame();
         } else {
             addItem("toxic spear");
             removeItem("poison");

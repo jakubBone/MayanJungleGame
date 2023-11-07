@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Jungle {
     public boolean ifNorthExplored = false;
     public boolean ifSouthExplored = false;
-    public boolean ifSouthAgainExplored = false;
+    public static boolean ifSouthAgainExplored = false;
     public boolean ifEastExplored = false;
     public boolean ifWestExplored = false;
     public static boolean ifIndianTranslated = false;
@@ -12,33 +12,6 @@ public class Jungle {
     Scanner scanner = new Scanner(System.in);
     Item item = new Item();
     Game game = new Game();
-
-    public void firstScene() {
-        System.out.println("You wake up suddenly in an unknown place. The last thing you remember is " +
-                "a meeting with professor Luis Enrique from Anthropology University of Mexico City. " +
-                "The first thing you feel is heat and humidity. There are a lot of tropical trees and birdsong like " +
-                "you've never heard before... - Where the hell I am ?! - you think ");
-        System.out.println("- Calm down buddy - you think - Everything will be fine...");
-        System.out.println("You get up and go straight, and you realised that probably you're somewhere in the mexican jungle... \n ");
-    }
-
-    public void firstBagCheckingScene() {
-        System.out.println("You have your bag. Let's check the content");
-        item.openTheBag();
-        System.out.println();
-        System.out.println("You are going through the jungle. Suddenly, you find a Crossroads with 4 directions -" +
-                " North, South, East and West");
-        System.out.println();
-        System.out.println("-Let's try to quit this place - you think");
-        System.out.println();
-        System.out.println("|| Your health leveL: " + Game.playerHealth + " ||");
-        System.out.println("Find something to get stronger");
-    }
-
-    public void lastScene() {
-        System.out.println("You are going straight. Suddenly there is light at the end on th path");
-        System.out.println("This is the end of the jungle. You see some buildings. What is this place?");
-    }
 
     public void getDirection() {
         String direction;
@@ -106,14 +79,11 @@ public class Jungle {
         whereIsPlayerNow = "SouthAgain";
         System.out.println("You passed the Cenote and continued on. And suddenly...");
         System.out.println("Oh shit! It's jaguar! You have to fight with him!");
-        fightWithJaguar();
-        System.out.println("------ The end test ------- ");
+            fightWithJaguar();
+
     }
 
     void fightWithJaguar() {
-        while(Game.playerHealth == 0 || Game.jaguarHealth ==0) {
-            System.out.println("|| Your health: " + Game.playerHealth + " ||");
-            System.out.println("|| Jaguar health: " + Game.jaguarHealth + " ||");
             if (Game.playerHealth == 50) {
                 System.out.println("You health level is too little...");
                 System.out.println("You didn't drunk the Holy Water from lake. It could cure you! So...");
@@ -122,18 +92,8 @@ public class Jungle {
                 System.exit(0);
             } else
                 System.out.println("Use the weapon!");
-            }
-            if(Game.playerHealth == 0){
-                System.out.println("The jaguar killed you...");
-                System.out.println("The end");
-                System.exit(0);
-            }
-            else {
-                System.out.println("You kill the jaguar!");
-                System.out.println();
-                System.exit(0);
-            }
-        }
+    }
+
     void goEast() {
         whereIsPlayerNow = "East";
         System.out.println("You found the Indian Village");
@@ -163,9 +123,6 @@ public class Jungle {
                 System.out.println("Invalid choice. Please try again.");
         }
     }
-
-
-
 
     void goWest() {
         whereIsPlayerNow = "West";

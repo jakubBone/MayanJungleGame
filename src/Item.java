@@ -74,7 +74,7 @@ public class Item {
     }
 
     public void useKnife(){
-        if(Jungle.whereIsPlayerNow.equals("SecondSouth")) {
+        if(Jungle.whereIsPlayerNow.equals("SouthAgain")) {
             System.out.println("The knife is to small to kill jaguar. Change the weapon!");
             System.out.println("The end");
             System.exit(0);
@@ -89,7 +89,7 @@ public class Item {
     }
     public void useTequila() {
         if (!ifTequilaDrank) {
-            if (Jungle.whereIsPlayerNow.equals("SecondSouth")) {
+            if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
                 System.out.println("You are too drunk to fight with jaguar. He is killing you...");
             } else {
                 System.out.println("You are drunk. Don't lost your bag and beware of dangers in the jungle!");
@@ -100,7 +100,7 @@ public class Item {
             System.out.println("You drank the entire bottle!");
     }
     public void useBottle() {
-        if (Jungle.whereIsPlayerNow.equals("FirstSouth")) {
+        if (Jungle.whereIsPlayerNow.equals("South")) {
             System.out.println("You filled bottle by water. You can Drink it later to increase your health!");
             ifBottleIsFilled = true;
         } else {
@@ -132,7 +132,7 @@ public class Item {
     }
 
     public void useToxicSpear(){
-        if(Jungle.whereIsPlayerNow.equals("SecondSouth"))
+        if(Jungle.whereIsPlayerNow.equals("SouthAgain"))
             System.out.println("You killed the jaguar using the toxic spear");
         else {
             System.out.println("The item not useful in this situation. Choose another the item.");
@@ -140,7 +140,7 @@ public class Item {
     }
 
     public void preapareToxicSpear() {
-        if (Jungle.whereIsPlayerNow.equals("SecondSouth")) {
+        if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
             System.out.println("It's to late for preparing the weapon. The Jaguar killed you");
             System.out.println("The End");
             System.exit(0);

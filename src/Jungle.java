@@ -56,10 +56,10 @@ public class Jungle {
                 break;
             } else if (direction.equals("S") && (!ifFirstSouthExplored || !ifSecondSouthExplored)) {
                 if (!ifFirstSouthExplored) {
-                    goFirstSouth();
+                    goSouth();
                     ifFirstSouthExplored = true;
                 } else {
-                    goSecondSouth();
+                    goSouthAgain();
                     ifSecondSouthExplored = true;
                 }
                 break;
@@ -69,9 +69,8 @@ public class Jungle {
             } else if (direction.equals("W") && !ifWestExplored) {
                 goWest();
                 break;
-            } else {
+            } else
                 System.out.println("Invalid choice or you have been here before. Please try again or change direction.");
-            }
         }
     }
 
@@ -94,21 +93,18 @@ public class Jungle {
             ifNorthExplored = true;
         } else if(input.equals("1"))
             System.out.println("Remember, you are in Jungle. All items would be useful...");
-        else
-            System.out.println("Invalid choise. Please try again.");
     }
 
-
-    void goFirstSouth() {
-        whereIsPlayerNow = "FirstSouth";
+    void goSouth() {
+        whereIsPlayerNow = "South";
         System.out.println("In front of you appears the Cenote - the natural reservoir with clean water");
         System.out.println("You should fill the bottle");
         ifFirstSouthExplored = true;
     }
 
-    void goSecondSouth() {
-        whereIsPlayerNow = "SecondSouth";
-        System.out.println("You passed the cenote and continued on. And suddenly...");
+    void goSouthAgain() {
+        whereIsPlayerNow = "SouthAgain";
+        System.out.println("You passed the Cenote and continued on. And suddenly...");
         System.out.println("Oh shit! It's jaguar! You have to fight with him!");
         fightWithJaguar();
         System.out.println("------ The end test ------- ");
@@ -116,35 +112,14 @@ public class Jungle {
 
     void fightWithJaguar() {
         if (Game.playerHealth == 50) {
-            System.out.println("You health is ||" + Game.playerHealth + "|| It's so little");
-            System.out.println("You should have drunk the holy water from Cenote to heel you!");
+            System.out.println("You health is ||" + Game.playerHealth + "|| It's too little");
+            System.out.println("You didn't drink the holy water from Cenote before. It could cure you!");
             System.out.println("The jaguar killed you...");
             System.out.println("The End");
             System.exit(0);
         } else
             System.out.println("Use the weapon!");
     }
-
-    /*void goEast() {
-        game.whereIsPlayerNow = "East";
-        System.out.println("You found the Indian Village");
-        System.out.println("Ask the Indian Chief for it the next direction. You need to use the dictionary");
-        System.out.println("Would you like to translate the Indian language?");
-        System.out.println("0 - Yes");
-        System.out.println("1 - No");
-        String input = scanner.nextLine();
-        while (!ifIndianTranslated) {
-            if (input.equals("0")) {
-                item.useItem();
-            }
-            else if (input.equals("1")) {
-                System.out.println("You need to get the hints from Indian. It would be good to use dictionary.");
-                break;
-            }
-            else
-                System.out.println("Invalid choice. Please try again.");
-        }
-    }*/
 
     void goEast() {
         whereIsPlayerNow = "East";

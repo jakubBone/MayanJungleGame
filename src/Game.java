@@ -42,7 +42,7 @@ public class Game {
             System.out.println("3 - Quit the game");
             input = scanner.nextLine();
             if (input.equals("0")) {
-                if (Jungle.whereIsPlayerNow.equals("SecondSouth"))
+                if (Jungle.whereIsPlayerNow.equals("SouthAgain"))
                     System.out.println("You can't escape. Fight the jaguar!");
                 else {
                     if (Jungle.whereIsPlayerNow.equals("Crossroad"))

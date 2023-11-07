@@ -45,18 +45,18 @@ public class Jungle {
                 goWest();
                 break;
             } else
-                System.out.println("Invalid choice or you have been here before. Please try again or change direction.");
+                Game.slowPrint("Invalid choice or you have been here before. Please try again or change direction.", Game.TEXT_DELAY);
         }
     }
     void goCrossroad(){
-        System.out.println("You turned back to the Crossroad");
+        Game.slowPrint("You turned back to the Crossroad", Game.TEXT_DELAY);
         Jungle.whereIsPlayerNow = "Crossroad";
 
     }
     void goNorth() {
         whereIsPlayerNow = "North";
-        System.out.println("On your way you find a flower with intense colors and wood sticks");
-        System.out.println("They would be useful. Do you want to take them?");
+        Game.slowPrint("On your way you find a flower with intense colors and wood sticks", Game.TEXT_DELAY);
+        Game.slowPrint("They would be useful. Do you want to take them?", Game.TEXT_DELAY);
         System.out.println("0 - Yes");
         System.out.println("1 - No");
         while (true) {
@@ -64,41 +64,41 @@ public class Jungle {
             if (input.equals("0")) {
                 item.putItems("poison", "wood sticks");
                 System.out.println();
-                System.out.println("Now you can use them to prepare a new weapon - toxic spear \n ");
+                Game.slowPrint("Now you can use them to prepare a new weapon - toxic spear \n ", Game.TEXT_DELAY);
                 ifNorthExplored = true;
                 break;
             } else if (input.equals("1")) {
-                System.out.println("Remember, you are in Jungle. All items would be useful...");
+                Game.slowPrint("Remember, you are in Jungle. All items would be useful...", Game.TEXT_DELAY);
                 break;
             }
             else
-                System.out.println("Invalid choice. Please try again.");
+                Game.slowPrint("Invalid choice. Please try again.", Game.TEXT_DELAY);
         }
     }
 
     void goSouth() {
         whereIsPlayerNow = "South";
-        System.out.println("In front of you appears the lake with Indian Holly Water ");
-        System.out.println("You should fill the bottle with Holly Water");
+        Game.slowPrint("In front of you appears the lake with Indian Holly Water ", Game.TEXT_DELAY);
+        Game.slowPrint("You should fill the bottle with Holly Water", Game.TEXT_DELAY);
         ifSouthExplored = true;
     }
 
     void goSouthAgain() {
         whereIsPlayerNow = "SouthAgain";
-        System.out.println("You passed the lake with Holly Water and continued on. And suddenly... \n");
-        System.out.println("Oh shit! It's jaguar! You have to fight with him! \n");
+        Game.slowPrint("You passed the lake with Holly Water and continued on. And suddenly... \n", Game.TEXT_DELAY);
+        Game.slowPrint("Oh shit! It's jaguar! You have to fight with him! \n", Game.TEXT_DELAY);
             fightWithJaguar();
     }
 
     void fightWithJaguar() {
             if (Game.playerHealth == 50) {
-                System.out.println("You health level is too little...\n");
-                System.out.println("You didn't drunk the Holy Water from lake. It could cure you! So...");
-                System.out.println("...the jaguar killed you...\n");
+                Game.slowPrint("You health level is too little...\n", Game.TEXT_DELAY);
+                Game.slowPrint("You didn't drunk the Holy Water from lake. It could cure you! So...", Game.TEXT_DELAY);
+                Game.slowPrint("...the jaguar killed you...\n", Game.TEXT_DELAY);
                 System.exit(0);
             } else {
                 while (Game.jaguarHealth > 0) {
-                    System.out.println("Use the weapon!");
+                    Game.slowPrint("Use the weapon!", Game.TEXT_DELAY);
                     item.useItem();
                 }
             }
@@ -107,8 +107,8 @@ public class Jungle {
 
     void goEast() {
         whereIsPlayerNow = "East";
-        System.out.println("You found the Indian Village");
-        System.out.println("Would you like to ask the Indian Chief for a appropriate way?");
+        Game.slowPrint("You found the Indian Village", Game.TEXT_DELAY);
+        Game.slowPrint("Would you like to ask the Indian Chief for a appropriate way?", Game.TEXT_DELAY);
         System.out.println("0 - Yes");
         System.out.println("1 - No");
         while (true) {
@@ -116,11 +116,11 @@ public class Jungle {
             if(input.equals("0")) {
                 while (Item.bag.contains("lighter")) {
                     if (!ifIndianTranslated) {
-                        System.out.println("The Indian talk to you in Mayan language");
-                        System.out.println("Open the bag and use the dictionary \n");
+                        Game.slowPrint("The Indian talk to you in Mayan language", Game.TEXT_DELAY);
+                        Game.slowPrint("Open the bag and use the dictionary \n", Game.TEXT_DELAY);
                         item.useItem();
                     } else {
-                        System.out.println("Exchange the lighter to a hint \n");
+                        Game.slowPrint("Exchange the lighter to a hint \n", Game.TEXT_DELAY);
                         item.useItem();
                     }
                 }
@@ -129,34 +129,34 @@ public class Jungle {
             }
 
             else if (input.equals("1")) {
-                System.out.println("No? You need to get the hints from Indian. It would be good to ask him for way.\n");
+                Game.slowPrint("No? You need to get the hints from Indian. It would be good to ask him for way.\n", Game.TEXT_DELAY);
                 break;
             } else
-                System.out.println("Invalid choice. Please try again.");
+                Game.slowPrint("Invalid choice. Please try again.", Game.TEXT_DELAY);
         }
     }
 
     void goWest() {
         whereIsPlayerNow = "West";
-        System.out.println("You find a huge tree with a strange sign on it.");
+        Game.slowPrint("You find a huge tree with a strange sign on it.", Game.TEXT_DELAY);
         System.out.println();
         System.out.println(" #######");
         System.out.println("#      ###########");
         System.out.println("        #       #");
         System.out.println("         #######");
         System.out.println();
-        System.out.println("- This is the Big Dipper constellation! - you think");
-        System.out.println("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future... \n");
+        Game.slowPrint("- This is the Big Dipper constellation! - you think", Game.TEXT_DELAY);
+        Game.slowPrint("- The Mayan had great astronomic knowledge. Maybe it would be useful in the future... \n", Game.TEXT_DELAY);
         ifWestExplored = true;
     }
 
 
     public void getHint() {
         if(whereIsPlayerNow.equals("SecondSouth"))
-            System.out.println("Use knife or toxic spear to kill the jaguar!");
+            Game.slowPrint("Use knife or toxic spear to kill the jaguar!", Game.TEXT_DELAY);
         else {
             if (!ifEastExplored)
-                System.out.println("Your hint: Go East and find Indian Village!");
+                Game.slowPrint("Your hint: Go East and find Indian Village!", Game.TEXT_DELAY);
             else {
                 getIndianHint();
             }
@@ -164,12 +164,12 @@ public class Jungle {
     }
 
     public static void getIndianHint() {
-        System.out.println("*****************************************");
-        System.out.println("- Dear White Man, these are the hints: ");
+        Game.slowPrint("*****************************************", Game.TEXT_DELAY);
+        Game.slowPrint("- Dear White Man, these are the hints: ", Game.TEXT_DELAY);
         System.out.println("1st hint: Go North to find a sign");
         System.out.println("2nd hint: Go West to heal you");
         System.out.println("3rd hint: Go South and continue straight ");
-        System.out.println("***************************************** \n");
+        Game.slowPrint("***************************************** \n", Game.TEXT_DELAY);
     }
 }
 

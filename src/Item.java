@@ -21,7 +21,7 @@ public class Item {
     public void putItems(String... items) {
         bag.addAll(Arrays.asList(items));
         for (String item : items) {
-            System.out.println("You put" + item + " to your bag");
+            Game.slowPrint("You put " + item + " to your bag", Game.TEXT_DELAY);
         }
 
     }
@@ -73,116 +73,116 @@ public class Item {
                     }
                     validInput = true;
                 } else
-                    System.out.println("Invalid choice buddy. Please try again");
+                    Game.slowPrint("Invalid choice buddy. Please try again", Game.TEXT_DELAY);
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice. Please enter a number.");
+                Game.slowPrint("Invalid choice. Please enter a number.", Game.TEXT_DELAY);
                 scanner.next();
             }
         } while (!validInput);
     }
 
-    void healthfightResult(){
+    public void healthfightResult(){
         if(Game.playerHealth == 0 || Game.jaguarHealth == 0) {
             if (Game.playerHealth == 0) {
-                System.out.println("The jaguar killed you...\n");
+                Game.slowPrint("The jaguar killed you...\n", Game.TEXT_DELAY);
                 Game.exitGame();
             }
             else {
-                System.out.println("You kill the jaguar!\n");
+                Game.slowPrint("You kill the jaguar!\n", Game.TEXT_DELAY);
             }
         } else
-            System.out.println("Keep fighting!\n");
+            Game.slowPrint("Keep fighting!\n", Game.TEXT_DELAY);
     }
     void printHealthLevels(){
-        System.out.println("|| Your health: " + Game.playerHealth + " ||");
-        System.out.println("|| Jaguar health: " + Game.jaguarHealth + " || \n");
+        Game.slowPrint("|| Your health: " + Game.playerHealth + " ||", Game.TEXT_DELAY);
+        Game.slowPrint("|| Jaguar health: " + Game.jaguarHealth + " || \n", Game.TEXT_DELAY);
     }
     public void useKnife(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-            System.out.println("The knife is to small to kill jaguar\n");
-            System.out.println("You cut him, but he also bitten you!\n"");
+            Game.slowPrint("The knife is to small to kill jaguar\n", Game.TEXT_DELAY);
+            Game.slowPrint("You cut him, but he also bitten you!\n", Game.TEXT_DELAY);
             Game.playerHealth -=25;
             Game.jaguarHealth -=10;
             printHealthLevels();
             healthfightResult();
         }
         else
-            System.out.println("The item not useful in this situation. Choose another item \n");
+            Game.slowPrint("The item not useful in this situation. Choose another item \n", Game.TEXT_DELAY);
     }
 
     public void useCocoa(){
         Game.playerHealth += 20;
-        System.out.println("You eat Cocoa grains. Your health increased to " + Game.playerHealth);
+        Game.slowPrint("You eat Cocoa grains. Your health increased to " + Game.playerHealth, Game.TEXT_DELAY);
     }
     public void useTequila() {
         if (!ifTequilaDrank) {
             if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-                System.out.println("You are too drunk to fight with jaguar. He is killing you... \n");
+                Game.slowPrint("You are too drunk to fight with jaguar. He is killing you... \n", Game.TEXT_DELAY);
                 Game.exitGame();
             } else {
-                System.out.println("You are drunk. Don't lost your bag and beware of dangers in the jungle!\n");
+                Game.slowPrint("You are drunk. Don't lost your bag and beware of dangers in the jungle!\n", Game.TEXT_DELAY);
                 ifTequilaDrank = true;
             }
         }
         else
-            System.out.println("You drank the entire bottle!");
+            Game.slowPrint("You drank the entire bottle!", Game.TEXT_DELAY);
     }
     public void useBottle() {
         if (Jungle.whereIsPlayerNow.equals("South")) {
-            System.out.println("You filled bottle by water. You can drink it later to increase your health! \n");
+            Game.slowPrint("You filled bottle by water. You can drink it later to increase your health! \n", Game.TEXT_DELAY);
             ifBottleIsFilled = true;
         }
         else if(Jungle.whereIsPlayerNow.equals("SouthAgain"))
-            System.out.println("The item not useful in this situation. Choose another item \n");
+            Game.slowPrint("The item not useful in this situation. Choose another item \n", Game.TEXT_DELAY);
         else{
             if (ifBottleIsFilled) {
                 Game.playerHealth += 50;
-                System.out.println("You drunk the Holy Water. Your health has inceased to " + Game.playerHealth + "\n");
+                Game.slowPrint("You drunk the Holy Water. Your health has inceased to " + Game.playerHealth + "\n", Game.TEXT_DELAY);
             } else
-                System.out.println("The bottle is empty. Find something to drink quickly! \n");
+                Game.slowPrint("The bottle is empty. Find something to drink quickly! \n", Game.TEXT_DELAY);
         }
     }
 
     public void useLighter() {
         if(Jungle.whereIsPlayerNow.equals("East") && Jungle.ifIndianTranslated) {
             Jungle.getIndianHint();
-            System.out.println("The Indian also gave you the Cocoa to eat \n");
+            Game.slowPrint("The Indian also gave you the Cocoa to eat \n", Game.TEXT_DELAY);
             bag.set(bag.indexOf("lighter"), "cocoa");
         }
         else
-            System.out.println("The item not useful in this situation. Choose another item \n");
+            Game.slowPrint("The item not useful in this situation. Choose another item \n", Game.TEXT_DELAY);
     }
 
     public void useDictionary(){
         if(Jungle.whereIsPlayerNow.equals("East") && !Jungle.ifIndianTranslated) {
-            System.out.println("- Dear Gringo, I'll show you the way, but I want your lighter - Indian said \n");
+            Game.slowPrint("- Dear Gringo, I'll show you the way, but I want your lighter - Indian said \n", Game.TEXT_DELAY);
             Jungle.ifIndianTranslated = true;
         }
         else
-            System.out.println("The item not useful in this situation. Choose another item \n");
+            Game.slowPrint("The item not useful in this situation. Choose another item \n", Game.TEXT_DELAY);
     }
 
     public void useToxicSpear(){
         if(Jungle.whereIsPlayerNow.equals("SouthAgain")){
-            System.out.println("Right choice! \n");
+            Game.slowPrint("Right choice! \n", Game.TEXT_DELAY);
             Game.jaguarHealth = 0;
             printHealthLevels();
             healthfightResult();
         }
         else {
-            System.out.println("The item not useful in this situation. Choose another item \n");
+            Game.slowPrint("The item not useful in this situation. Choose another item \n", Game.TEXT_DELAY);
         }
     }
 
     public void prepareToxicSpear() {
         if (Jungle.whereIsPlayerNow.equals("SouthAgain")) {
-            System.out.println("It's to late for preparing the weapon. The Jaguar killed you");
+            Game.slowPrint("It's to late for preparing the weapon. The Jaguar killed you", Game.TEXT_DELAY);
             Game.exitGame();
         } else {
             addItem("toxic spear");
             removeItem("poison");
             removeItem("wood sticks");
-            System.out.println("You have prepared a dangerous toxic spear using the poison and wood sticks");
+            Game.slowPrint("You have prepared a dangerous toxic spear using the poison and wood sticks", Game.TEXT_DELAY );
         }
     }
 

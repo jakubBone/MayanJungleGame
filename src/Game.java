@@ -6,7 +6,7 @@ public class Game {
     static int playerHealth = 50;
     static int jaguarHealth = 100;
 
-    public static final long TEXT_DELAY = 50; // 1 sekunda
+    public static final long TEXT_DELAY = 1000;
 
     Item item;
     Jungle jungle;
